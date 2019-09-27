@@ -1,0 +1,28 @@
+var define_8h =
+[
+    [ "MAX_ANNO", "define_8h.html#abe4076ab2e7aff3f56f45822352824ad", null ],
+    [ "MAX_ANNO_NASCITA", "define_8h.html#aa0e5756d973294e9c684b5d1798f71e8", null ],
+    [ "MAX_CODICE_PRENOTAZIONE", "define_8h.html#acd5571872b6a27e5b227d08974ae679e", null ],
+    [ "MAX_CODICE_VOLO", "define_8h.html#a1811e377eb1cf22df1197a2cfa949e73", null ],
+    [ "MAX_COGNOME", "define_8h.html#ae2433f35c071964de3e67f504e0f28aa", null ],
+    [ "MAX_DURATA", "define_8h.html#afdc1d62558736f5b72c015ed10b9e216", null ],
+    [ "MAX_GIORNO", "define_8h.html#a621e6dff6cb0b798f6ca47b15f7d7fcb", null ],
+    [ "MAX_LUOGO_DI_NASCITA", "define_8h.html#ab6af835f1c2ed602bdca789eec14638a", null ],
+    [ "MAX_MESE", "define_8h.html#a32df43954eb6eea4b4e07751068f97f7", null ],
+    [ "MAX_MINUTI", "define_8h.html#ac5b85a4e0fdb0ecb53800fca4922a22a", null ],
+    [ "MAX_MODELLO_AEREO", "define_8h.html#ab684e2c8b65a24a7e59c9ff4b02bfd02", null ],
+    [ "MAX_NOME", "define_8h.html#a650a929b45480c0875d8c814f442b6ac", null ],
+    [ "MAX_NOME_COMPAGNIA", "define_8h.html#a7d6eb3284e80ca7fa5346973e751a273", null ],
+    [ "MAX_NOME_UTENTE", "define_8h.html#a5848ce85481147fbe3c4d0833980dedb", null ],
+    [ "MAX_ORA", "define_8h.html#a0e20e0c8264b18234ee1c3f1eb4943f0", null ],
+    [ "MAX_ORA_VOLO", "define_8h.html#aa7a589b8ffb178b53a046a3016ec7651", null ],
+    [ "MAX_PASSAPORTO", "define_8h.html#a880d733c8de2938a15cf9ddfc72fff2f", null ],
+    [ "MAX_PASSWORD_UTENTE", "define_8h.html#a357903c62e65a6e22895cfaebe642d64", null ],
+    [ "MAX_POSTI", "define_8h.html#acd54e9b4d24bd6ee9734fdbda3c84b61", null ],
+    [ "MAX_PRENOTAZIONI", "define_8h.html#a3e58a49def600a497d69859a8860e70a", null ],
+    [ "MAX_SCELTA", "define_8h.html#a862af9c498ec8ba65b93c81f4ea0843d", null ],
+    [ "MAX_TRATTA_ARRIVO", "define_8h.html#a05232cbd6b297f57ebd68e3b2c1e8ae2", null ],
+    [ "MAX_TRATTA_PARTENZA", "define_8h.html#a3789b4d474f4561cdccbcd94a52e9ac2", null ],
+    [ "MIN_ANNO_NASCITA", "define_8h.html#a48bf3d124b6ec69c72126bdb9902b953", null ],
+    [ "MIN_ORA_VOLO", "define_8h.html#aaf54687821cb5c5e857e4523fecf8d50", null ]
+];

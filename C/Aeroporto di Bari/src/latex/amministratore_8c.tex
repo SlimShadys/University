@@ -1,0 +1,180 @@
+\hypertarget{amministratore_8c}{}\section{Riferimenti per il file amministratore.\+c}
+\label{amministratore_8c}\index{amministratore.\+c@{amministratore.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}define.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}volo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}passeggero.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}controlli.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{amministratore_8c_a3e0ee854c6242b6669da7c40acdfab89}{chiudi\+\_\+checkin} ()
+\begin{DoxyCompactList}\small\item\em Librerie necessarie per il corretto funzionamento del programma. \end{DoxyCompactList}\item 
+void \hyperlink{amministratore_8c_a7172ac0d3bdb443a3a6a13882b3a3133}{login\+\_\+amministratore} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Questo file contiene le implementazioni dei prototipi dichiarati nel file \hyperlink{amministratore_8h}{amministratore.\+h} \begin{DoxyVersion}{Versione}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Data}
+13/05/2019 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autori}
+Gianmarco Scarano 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{amministratore_8c_a3e0ee854c6242b6669da7c40acdfab89}\label{amministratore_8c_a3e0ee854c6242b6669da7c40acdfab89}} 
+\index{amministratore.\+c@{amministratore.\+c}!chiudi\+\_\+checkin@{chiudi\+\_\+checkin}}
+\index{chiudi\+\_\+checkin@{chiudi\+\_\+checkin}!amministratore.\+c@{amministratore.\+c}}
+\subsubsection{\texorpdfstring{chiudi\+\_\+checkin()}{chiudi\_checkin()}}
+{\footnotesize\ttfamily int chiudi\+\_\+checkin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Librerie necessarie per il corretto funzionamento del programma. 
+
+La funzione chiede all\textquotesingle{}amministratore un codice volo identificativo per quel volo e ne chiuderà il check-\/in cambiando il flag \char`\"{}elenco.\+chiusura\+\_\+checkin\char`\"{} da 0 a 1. Poi stampa l\textquotesingle{}avvenuta chiusura.
+
+La funzione non ha nessun valore di ritorno. Sarà il valore di ritorno. (0 o 1).
+
+Codice volo temporaneo
+
+Dichiaro una variabile di tipo F\+I\+LE che mi servirà a leggere tutti i codice volo
+
+Lunghezza della stringa \char`\"{}codice\+\_\+volo\char`\"{} inserita dall\textquotesingle{}amministratore.
+
+Se la lunghezza del codice è maggiore di 6, mostra un errore.
+
+Scorro la posizione \mbox{[}0\mbox{]}-\/\mbox{[}1\mbox{]} del vettore durata e controllo se sono stati inseriti dei caratteri alfabetici tramite la funzione isalpha(). Se la if non è verificata, stampo un errore ed esco dalla funzione con correct = 0.
+
+Scorro la posizione \mbox{[}2\mbox{]}-\/\mbox{[}3\mbox{]}-\/\mbox{[}4\mbox{]}-\/\mbox{[}5\mbox{]} del vettore durata e controllo se sono stati inseriti dei caratteri numerici tramite la funzione isdigit(). Se la if non è verificata, stampo un errore ed esco dalla funzione con correct = 0.
+
+Apro il file.
+
+Struct del volo
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Se il codice volo che l\textquotesingle{}utente ha immesso coincide con almeno un codice volo già presente nel sistema, stampa un errore e ripeti il tutto.
+
+Tramite fseek(), mi posiziono al volo giusto tramite \char`\"{}elenco.\+id\char`\"{}, dopo di che mi muovo nel giusto membro (elenco.\+chiusura\+\_\+checkin).
+
+Una volta aggiornato il file, lo chiudo
+
+Stampa un errore non appena la prima if (relativa alla lunghezza) è falsa. \mbox{\Hypertarget{amministratore_8c_a7172ac0d3bdb443a3a6a13882b3a3133}\label{amministratore_8c_a7172ac0d3bdb443a3a6a13882b3a3133}} 
+\index{amministratore.\+c@{amministratore.\+c}!login\+\_\+amministratore@{login\+\_\+amministratore}}
+\index{login\+\_\+amministratore@{login\+\_\+amministratore}!amministratore.\+c@{amministratore.\+c}}
+\subsubsection{\texorpdfstring{login\+\_\+amministratore()}{login\_amministratore()}}
+{\footnotesize\ttfamily void login\+\_\+amministratore (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+La funzione, molto semplicemente, mostra un menù dedicato interamente all\textquotesingle{}amministratore. Attraverso una switch, chiede all\textquotesingle{}amministratore un compito da svolgere. Sono implementati gli opportuni controlli.
+
+La funzione non ha nessun valore di ritorno. Dichiaro una variabile di tipo file, che passerò all\textquotesingle{}interno di varie funzioni presenti nella switch.
+
+Valore di ritorno per la funzione \char`\"{}chiudi\+\_\+checkin\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}input\+Utenti\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}input\+Voli\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}modifica\+Voli\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}modifica\+Utenti\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}lettura\+Utenti\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}lettura\+Voli\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}ricerca\+Prenotazione\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}ordinamento\+Utenti\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}ordinamento\+Voli\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}ordinamento\+Prenotazioni\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}ricerca\+Voli\char`\"{}
+
+Variabile per la condizione iniziale del login
+
+Variabile che controlla l\textquotesingle{}esito del controllo menu
+
+Sarà la scelta dell\textquotesingle{}utente trasformata in intero
+
+Variabile per immagazzinare la scelta da eseguire.
+
+Variabile che mi permetterà di uscire dal secondo while loop.
+
+Dichiaro un vettore di tipo char nella quale sarà presente il nome utente temporaneo immesso dall\textquotesingle{}utente stesso
+
+Dichiaro un vettore di tipo char nella quale sarà presente la la password utente temporanea immessa dall\textquotesingle{}utente stesso
+
+Dichiaro due vettori, sempre di tipo char, nella quale sono presenti le effettive credenziali di accesso per l\textquotesingle{}amministratore.
+
+Dichiaro un vettore, sempre di tipo char, nella quale sarà presente l\textquotesingle{}effettivo nomeadmin, necessario per l\textquotesingle{}accesso amministratore.
+
+Dichiaro un vettore, sempre di tipo char, nella quale sarà presente l\textquotesingle{}effettiva passwordadmin, necessario per l\textquotesingle{}accesso amministratore.
+
+Finchè correct è uguale a 0, esegui il loop.
+
+Prendo in input un massimo di 19 caratteri. Il 20 è il terminatore.
+
+Prendo in input un massimo di 19 caratteri. Il 20 è il terminatore.
+
+Tramite la funzione strcmp(), presente in \char`\"{}string.\+h\char`\"{}, confronto i due vettori temporanei (che ora avranno le credenziali immesse dall\textquotesingle{}utente) con le effettive credenziali d\textquotesingle{}accesso presenti nei vettori dichiarati precedentemente. Se entrambi i vettori combaciano, allora la variabile \char`\"{}correct\char`\"{} diventerà 1, ed uscirò dal ciclo. Altrimenti, stampo un messaggio d\textquotesingle{}errore e faccio ripetere la procedura di login, azzerando i vettori temporanei.
+
+Finchè s è uguale a 1, eseguo il loop.
+
+Stampo le varie funzionalità dell\textquotesingle{}amministratore.
+
+Immagazzino la scelta dell\textquotesingle{}utente nella variabile sceltautente.
+
+Controllo se l\textquotesingle{}amministratore ha inserito una scelta corretta
+
+Se il controllo non è andato a buon fine, ri-\/mostro il menu dopo un messaggio di errore.
+
+Altrimenti trasformo la scelta dell\textquotesingle{}amministratore, da carattere ad intero e proseguo
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}amministratore abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Switch per controllare cosa l\textquotesingle{}amministratore ha immesso
+
+Chiamata alla funzione che permettere di chiudere il check-\/in, dato un volo.
+
+Chiamata alla funzione che permette l\textquotesingle{}aggiunta di voli.
+
+Chiamata alla funzione che permette l\textquotesingle{}aggiunta di utenti.
+
+Chiamata alla funzione che permette la modifica di voli.
+
+Chiamata alla funzione che permette la modifica di utenti.
+
+Chiamata alla funzione che permette la lettura di voli.
+
+Chiamata alla funzione che permette la lettura di utenti.
+
+Chiamata alla funzione che permette la ricerca di prenotazioni.
+
+Chiamata alla funzione che permette l\textquotesingle{}ordinamento di utenti
+
+Chiamata alla funzione che permette l\textquotesingle{}ordinamento di utenti
+
+Chiamata alla funzione che permette l\textquotesingle{}ordinamento di utenti
+
+Chiamata alla funzione che permette l\textquotesingle{}ordinamento di utenti
+
+Chiamata alla funzione che mi porta al menu precedente (menu utente).
+
+Rendo vero il valore della while e termino il programma con exit(0).
+
+Qui ricadranno tutti i valori non corretti. (caratteri e num $>$ 9). 

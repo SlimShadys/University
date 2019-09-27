@@ -1,0 +1,90 @@
+\hypertarget{menu_8h}{}\section{Riferimenti per il file menu.\+h}
+\label{menu_8h}\index{menu.\+h@{menu.\+h}}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{menu_8h_ab9b7624bbadbf399f9efa8726a8c394c}{mostra\+Menu} ()
+\begin{DoxyCompactList}\small\item\em Includo le librerie necessarie per il corretto funzionamento del programma. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Prototipi di funzione per la visualizzazione del menu.
+
+Questo header file contiene tutti i prototipi di funzione relativi ai controlli per la programmazione difensiva, contro eventuali input errati inseriti dall\textquotesingle{}utente.
+
+\begin{DoxyVersion}{Versione}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Data}
+13/05/2018 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autori}
+Gianmarco Scarano 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{menu_8h_ab9b7624bbadbf399f9efa8726a8c394c}\label{menu_8h_ab9b7624bbadbf399f9efa8726a8c394c}} 
+\index{menu.\+h@{menu.\+h}!mostra\+Menu@{mostra\+Menu}}
+\index{mostra\+Menu@{mostra\+Menu}!menu.\+h@{menu.\+h}}
+\subsubsection{\texorpdfstring{mostra\+Menu()}{mostraMenu()}}
+{\footnotesize\ttfamily void mostra\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Includo le librerie necessarie per il corretto funzionamento del programma. 
+
+Questa procedura apre l\textquotesingle{}interfaccia per il menu. Ulteriori funzioni saranno implementate all\textquotesingle{}interno. La funzione ha codice F01.
+
+\begin{DoxyReturn}{Restituisce}
+La funzione, essendo procedura, non ha nessun parametro di return. 
+\end{DoxyReturn}
+Valore di ritorno per la funzione \char`\"{}prenota\+Volo\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}checkin\char`\"{}
+
+Valore di ritorno per la funzione \char`\"{}modifica\+Utente\char`\"{}
+
+Variabile che controlla l\textquotesingle{}esito del controllo menu
+
+Sarà la scelta dell\textquotesingle{}utente trasformata in intero
+
+Dichiaro una variabile di tipo file, che passerò all\textquotesingle{}interno di varie funzioni presenti nella switch.
+
+Dichiaro un\textquotesingle{}altra variabile di tipo file, che passerò all\textquotesingle{}interno di varie funzioni presenti nella switch.
+
+Valore di ritorno per la funzione \char`\"{}input\+Utente\char`\"{}
+
+Variabile per immagazzinare la scelta da eseguire.
+
+Condizione utile per rendere falso il ciclo while.
+
+Finchè s è diverso da 1, continua a ciclare.
+
+Stampo le varie funzionalità dell\textquotesingle{}utente
+
+Immagazzino la scelta dell\textquotesingle{}utente nella variabile sceltautente.
+
+Controllo se l\textquotesingle{}utente ha inserito una scelta corretta
+
+Se il controllo non è andato a buon fine, ri-\/mostro il menu dopo un messaggio di errore.
+
+Altrimenti trasformo la scelta dell\textquotesingle{}utente, da carattere ad intero e proseguo
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}utente abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Switch per controllare cosa l\textquotesingle{}utente ha immesso
+
+Chiamata alla funzione che permette di aggiungere nuovi utenti.
+
+Chiamata alla funzione che permette di prenotare un volo.
+
+Chiamata alla funzione che permette di effettuare il check-\/in, dato un numero prenotazione.
+
+Chiamata alla funzione che permettere di modificare un utente, dato un certo ID.
+
+Chiamata alla funzione che mostra le funzionalità dell\textquotesingle{}amministratore.
+
+Rendo vero il valore della while ed esco dal programma.
+
+Qui ricadranno tutti i valori non corretti. (caratteri e num $>$ 6). 

@@ -1,0 +1,732 @@
+\hypertarget{passeggero_8c}{}\section{Riferimenti per il file passeggero.\+c}
+\label{passeggero_8c}\index{passeggero.\+c@{passeggero.\+c}}
+{\ttfamily \#include \char`\"{}passeggero.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}controlli.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{passeggero_8c_ae766664acc6f174203967f006291f025}{I\+D\+\_\+\+Utente} ()
+\begin{DoxyCompactList}\small\item\em Includo le librerie necessarie per il corretto funzionamento del programma. \end{DoxyCompactList}\item 
+void \hyperlink{passeggero_8c_a2d80f9e58b0146a8810e5fd8765bf5c3}{reset\+Utente} (\hyperlink{structpasseggero}{passeggero} $\ast$utenti1)
+\item 
+int \hyperlink{passeggero_8c_a1404b36fb6ce938258eeb495fc2d6e19}{input\+Utenti} (F\+I\+LE $\ast$input)
+\item 
+int \hyperlink{passeggero_8c_a1eab1d14fe8aff422efdd9c0019832e9}{lettura\+Utenti} (F\+I\+LE $\ast$input)
+\item 
+int \hyperlink{passeggero_8c_ac5e7e0c84924f117f8f503b764b8f592}{modifica\+Utente} (F\+I\+LE $\ast$passeggeri)
+\item 
+int \hyperlink{passeggero_8c_adf81419d2c9ea54416884e6684bcd518}{ordinamento\+Utenti} (F\+I\+LE $\ast$passeggeri)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Questo file contiene le implementazioni dei prototipi dichiarati nel file \hyperlink{controlli_8h}{controlli.\+h} \begin{DoxyVersion}{Versione}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Data}
+13/05/2019 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autori}
+Gianmarco Scarano 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{passeggero_8c_ae766664acc6f174203967f006291f025}\label{passeggero_8c_ae766664acc6f174203967f006291f025}} 
+\index{passeggero.\+c@{passeggero.\+c}!I\+D\+\_\+\+Utente@{I\+D\+\_\+\+Utente}}
+\index{I\+D\+\_\+\+Utente@{I\+D\+\_\+\+Utente}!passeggero.\+c@{passeggero.\+c}}
+\subsubsection{\texorpdfstring{I\+D\+\_\+\+Utente()}{ID\_Utente()}}
+{\footnotesize\ttfamily int I\+D\+\_\+\+Utente (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Includo le librerie necessarie per il corretto funzionamento del programma. 
+
+Acquisisce l\textquotesingle{}ultimo numero ID tra tutti gli utenti, posizionandosi all\textquotesingle{}ultima posizione e immagazzinando in una variabile il suddetto ID.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei passeggeri sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+L\textquotesingle{}intero restituito sarà \char`\"{}\+I\+D\char`\"{}, nel caso in cui il file esista. Verrà restituito 0 se non ci sono utenti, oppure se il file non esiste. 
+\end{DoxyPostcond}
+Struct per gli utenti, da cui prendere l\textquotesingle{}ID
+
+Dichiarazione del file da cui pescare l\textquotesingle{}ultimo utente
+
+Se il file non esiste, restituisci 0.
+
+Variabile che conterrà l\textquotesingle{}ID
+
+Mi posiziono all\textquotesingle{}ultima riga del file tramite S\+E\+E\+K\+\_\+\+E\+ND, ma, volendo l\textquotesingle{}ultimo utente, lo leggo attraverso l\textquotesingle{}offset giusto \char`\"{}(-\/1)$\ast$sizeof(passeggero)\char`\"{}
+
+Immagazzino l\textquotesingle{}ID dell\textquotesingle{}utente trovato in ultima posizione nella variabile \char`\"{}id\char`\"{}.
+
+Se l\textquotesingle{}ultimo ID è $<$= 0 (significa che l\textquotesingle{}ultimo utente è stato cancellato) allora, prendo l\textquotesingle{}ID del penultimo utente.
+
+Mi sposto al penultimo utente
+
+Riassegno il penultimo ID nella variabile \char`\"{}id\char`\"{}
+
+Chiudo il file dei passeggeri
+
+Ritorno alla funzione l\textquotesingle{}ID dell\textquotesingle{}utente trovato.
+
+Ritorno 0 alla funzione se il file non è stato trovato. \mbox{\Hypertarget{passeggero_8c_a1404b36fb6ce938258eeb495fc2d6e19}\label{passeggero_8c_a1404b36fb6ce938258eeb495fc2d6e19}} 
+\index{passeggero.\+c@{passeggero.\+c}!input\+Utenti@{input\+Utenti}}
+\index{input\+Utenti@{input\+Utenti}!passeggero.\+c@{passeggero.\+c}}
+\subsubsection{\texorpdfstring{input\+Utenti()}{inputUtenti()}}
+{\footnotesize\ttfamily int input\+Utenti (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{input }\end{DoxyParamCaption})}
+
+La seguente funzione, permette di caricare sul file un nuovo passeggero. Chiede tutti i relativi campi del passeggeri stesso, effettua controlli e alla fine scrive su file. La funzione ha codice F02.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei passeggeri sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Le informazioni dell\textquotesingle{}utente immesso saranno scritte sul file. 
+\end{DoxyPostcond}
+Variabile che indica la correttezza o no di un campo.
+
+All\textquotesingle{}inizio, l\textquotesingle{}ID dell\textquotesingle{}utente sarà 0. Successivamente verrà preso l\textquotesingle{}ultimo ID delle utenze tramite la funzione \hyperlink{passeggero_8c_ae766664acc6f174203967f006291f025}{I\+D\+\_\+\+Utente()}.
+
+Se il file non esiste, stampa un messaggio di errore.
+
+Ricavo l\textquotesingle{}ID dell\textquotesingle{}ultimo utente tramite la funzione \hyperlink{passeggero_8c_ae766664acc6f174203967f006291f025}{I\+D\+\_\+\+Utente()} e lo immagazzino nella variabile \char`\"{}id\char`\"{}, la quale mi servirà successivamente.
+
+Mi posiziono all\textquotesingle{}ultima riga del file, in modo tale da scrivere su una riga vuota.
+
+Prima di inserire tutte le informazioni del nuovo utente resetto la struct passeggero.
+
+Finchè correct non è uguale ad 1, cicla.
+
+Svuoto eventuale buffer.
+
+Uso la fgets per poter memorizzare al massimo due nomi. Es. (Francesco Paolo).
+
+La funzione \hyperlink{controlli_8c_a01ce66cb3d9c508157847d28e7e2a220}{Controllo\+Nome\+Utente()}, restituisce 1 o 0. Se è 1 (significa che il nome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Lettera maiuscola all\textquotesingle{}inizio
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (g\+Ia\+Nm\+A\+R\+CO =$>$ Gianmarco)
+
+La fgets è conosciuta per inserire un carattere newline alla fine del vettore. Tramite questo algoritmo, controllo se alla fine del vettore stesso, è stato inserito un carattere newline (~\newline
+). Se sì, lo faccio diventare un carattere nullo (\textbackslash{}0).
+
+Resetto il contatore \char`\"{}correct\char`\"{} per poter entrare nella prossima while.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a9dc18870b3905bc7ac4a6c030dd7a58f}{Controllo\+Cognome\+Utente()}, restituisce 1 o 0. Se è 1 (significa che il cognome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Lettera maiuscola all\textquotesingle{}inizio
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (s\+Car\+A\+No =$>$ Scarano)
+
+Resetto il contatore \char`\"{}correct\char`\"{} per poter entrare nella prossima while.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a097a483039cadd67e294ec12fff7a9ba}{Controllo\+Mese\+Utente()}, restituisce 1 o 0. Se è 1 (significa che il mese è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Resetto il contatore \char`\"{}correct\char`\"{} per poter entrare nella prossima while.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a7b3c199033e53bdd75c26f07a646462f}{Controllo\+Giorno\+Utente()}, restituisce 1 o 0. Se è 1 (significa che il giorno è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Resetto il contatore \char`\"{}correct\char`\"{} per poter entrare nella prossima while.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a64ac6f233dcb81b685fb10ffd7067bf3}{Controllo\+Anno\+Utente()}, restituisce 1 o 0. Se è 1 (significa che l\textquotesingle{}anno è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Resetto il contatore \char`\"{}correct\char`\"{} per poter entrare nella prossima while.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_ad5973600a1d8a9928dd1dc8ffcbec014}{Controllo\+Luogo\+Di\+Nascita()}, restituisce 1 o 0. Se è 1 (significa che il luogo di nascita è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Lettera maiuscola all\textquotesingle{}inizio
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (a\+Lt\+Am\+U\+RA =$>$ Altamura)
+
+Resetto il contatore \char`\"{}correct\char`\"{} per poter entrare nella prossima while.
+
+Finchè correct non è uguale ad 1, cicla.
+
+Dichiaro un vettore temporaneo per il passaporto
+
+La funzione \hyperlink{controlli_8c_abba4e5a7d379d3dbcdcb8e0405a75f52}{Controllo\+Numero\+Passaporto()}, restituisce 1 o 0. Se è 1 (significa che il numero passaporto oppure il numero della carta d\textquotesingle{}identità è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere devono essere maiuscole. (Es. A\+A1234567)
+
+Copio il numero passaporto dal vettore temporaneo alla struct
+
+La variabile \char`\"{}id\char`\"{} conteneva l\textquotesingle{}ID dell\textquotesingle{}ultimo utente. Lo aumento di 1, e lo assegno all\textquotesingle{}utente appena registrato.
+
+Scrivo tutta la struct precedentemente popolata, nel file dei passeggeri.
+
+Chiusura file
+
+Chiudo prima la prima apertura del file
+
+Chiudo la seconda apertura del file \mbox{\Hypertarget{passeggero_8c_a1eab1d14fe8aff422efdd9c0019832e9}\label{passeggero_8c_a1eab1d14fe8aff422efdd9c0019832e9}} 
+\index{passeggero.\+c@{passeggero.\+c}!lettura\+Utenti@{lettura\+Utenti}}
+\index{lettura\+Utenti@{lettura\+Utenti}!passeggero.\+c@{passeggero.\+c}}
+\subsubsection{\texorpdfstring{lettura\+Utenti()}{letturaUtenti()}}
+{\footnotesize\ttfamily int lettura\+Utenti (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{input }\end{DoxyParamCaption})}
+
+La seguente funzione, permette di leggere da file l\textquotesingle{}elenco dei passeggeri Effettua un algoritmo di ricerca per\+:
+\begin{DoxyItemize}
+\item Nome
+\item Cognome
+\item Nome e Cognome
+\item Data di nascita
+\item Comune di nascita Chiede tutti i relativi campi del passeggero stesso, effettua controlli e alla fine scrive su file. La funzione ha codice F10
+\end{DoxyItemize}
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei passeggeri sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Le informazione dell\textquotesingle{}utente immesso saranno scritte sul file. 
+\end{DoxyPostcond}
+Inizializzo il file dei passeggeri
+
+Contatore che mi permetterà di uscire dal ciclo while.
+
+Immagazzino cosa l\textquotesingle{}utente ha scelto in questa variabile
+
+Serie di variabili contatori che mi serviranno per uscire dai cicli se il dato richiesto è giusto.
+
+Variabile per trovare la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Variabile che mi permette la lettura del file. Quando read = 0, allora la lettura è finita.
+
+Variabile che mi permette di sapere quante prenotazioni ci sono nel sistema.
+
+Variabile che mi permette di sapere se l\textquotesingle{}occorrenza richiesta è stata trovata o meno.
+
+Vettore su cui memorizzare il nome da cercare.
+
+Vettore su cui memorizzare il cognome da cercare.
+
+Vettore su cui memorizzare il mese da cercare.
+
+Vettore su cui memorizzare il giorno da cercare.
+
+Vettore su cui memorizzare l\textquotesingle{}anno da cercare.
+
+Vettore su cui memorizzare il comune da cercare.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Finchè s è diverso da 1, continua a ciclare.
+
+Stampo le possibili ricerche
+
+Immagazzino la scelta dell\textquotesingle{}amministratore nella variabile sceltautente.
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}amministratore abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Switch per controllare cosa l\textquotesingle{}amministratore ha immesso
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a4c5302241f64015d37a78cacafdbde34}{Controllo\+Nome\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il nome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Faccio diventare maiuscola la prima lettera
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (g\+Ia\+Nm\+A\+R\+CO =$>$ Gianmarco)
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Se il nome da cercare immesso dall\textquotesingle{}utente e il nome presente del file coincidono, allora stampalo.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Appena trova una occorrenza (Es. Cerco \char`\"{}\+Paolo\char`\"{} e trova 5 occorrenze. notfound = 5) aumento il contatore.
+
+Se notfound è minore di 1 (quindi 0), significa che nessun utente è stato trovato con quella occorrenza, quindi stampo un messaggio di avviso.
+
+Chiudo il file
+
+Inizializzo il vettore usato per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_aaabf473f17c37bc452e693ae5e6da62b}{Controllo\+Cognome\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il cognome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (s\+Car\+A\+No =$>$ Scarano)
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Se il cognome da cercare immesso dall\textquotesingle{}utente e il cognome presente del file coincidono, allora stampalo.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Appena trova una occorrenza (Es. Cerco \char`\"{}\+Scarano\char`\"{} e trova 5 occorrenze. notfound = 5) aumento il contatore.
+
+Se notfound è minore di 1 (quindi 0), significa che nessun utente è stato trovato con quella occorrenza, quindi stampo un messaggio di avviso.
+
+Chiudo il file
+
+Inizializzo il vettore usato per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a4c5302241f64015d37a78cacafdbde34}{Controllo\+Nome\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il nome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Faccio diventare maiuscola la prima lettera
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (g\+Ia\+Nm\+A\+R\+CO =$>$ Gianmarco)
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_aaabf473f17c37bc452e693ae5e6da62b}{Controllo\+Cognome\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il cognome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (s\+Car\+A\+No =$>$ Scarano)
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Se il nome ed il cognome da cercare immesso dall\textquotesingle{}utente coincide con il nome e cognome presente sul file, allora stampalo.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Appena trova una occorrenza (Es. Cerco \char`\"{}\+Scarano\char`\"{} e trova 5 occorrenze. notfound = 5) aumento il contatore.
+
+Se notfound è minore di 1 (quindi 0), significa che nessun utente è stato trovato con quella occorrenza, quindi stampo un messaggio di avviso.
+
+Chiudo il file
+
+Inizializzo il vettore usato per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a1588267e569fc73d97133ffd570a7d75}{Controllo\+Mese\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il mese è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Finchè correct non è uguale ad 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a007e62f04fd54b64d0415e1b7dc059b9}{Controllo\+Giorno\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il giorno è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La funzione \hyperlink{controlli_8c_aad097080a29b37a8c5256eee5779b9ae}{Controllo\+Anno\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che l\textquotesingle{}anno è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Se la data da cercare corrisponde con la data trovata nel file, allora stampo.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Appena trova una occorrenza (Es. Cerco \char`\"{}\+Scarano\char`\"{} e trova 5 occorrenze. notfound = 5) aumento il contatore.
+
+Se notfound è minore di 1 (quindi 0), significa che nessun utente è stato trovato con quella occorrenza, quindi stampo un messaggio di avviso.
+
+Chiudo il file
+
+Inizializzo i vettori usati per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Finchè correct non è uguale a 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a90f37edcb9859318188caebacb7b4085}{Controllo\+Comune\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il comune è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Maiuscola all\textquotesingle{}inizio
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (a\+Lt\+A\+M\+Ura =$>$ Altamura)
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Se il comune da cercare corrisponde con il comune trovato nel file, allora stampa.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Appena trova una occorrenza (Es. Cerco \char`\"{}\+Scarano\char`\"{} e trova 5 occorrenze. notfound = 5) aumento il contatore.
+
+Se notfound è minore di 1 (quindi 0), significa che nessun utente è stato trovato con quella occorrenza, quindi stampo un messaggio di avviso.
+
+Chiudo il file
+
+Inizializzo i vettori usati per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Tramite la fseek impostata a S\+E\+E\+K\+\_\+\+E\+ND, mi sposto all\textquotesingle{}ultima riga. Per leggere l\textquotesingle{}ultimo utente, muovo l\textquotesingle{}offset a (-\/1).
+
+Leggo l\textquotesingle{}utente e stampo il suo ID. Quell\textquotesingle{}ID mi dirà quanti utenti sono registrati nel sistema.
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Aumento il contatore delle prenotazioni
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Resetto le variabili per passare al prossimo utente
+
+Chiudo il file
+
+Inizializzo i vettori usati per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Rendo vero il valore della while ed torno al menu amministratore.
+
+Qui ricadranno tutti i valori non corretti. (caratteri e num $>$ 7). \mbox{\Hypertarget{passeggero_8c_ac5e7e0c84924f117f8f503b764b8f592}\label{passeggero_8c_ac5e7e0c84924f117f8f503b764b8f592}} 
+\index{passeggero.\+c@{passeggero.\+c}!modifica\+Utente@{modifica\+Utente}}
+\index{modifica\+Utente@{modifica\+Utente}!passeggero.\+c@{passeggero.\+c}}
+\subsubsection{\texorpdfstring{modifica\+Utente()}{modificaUtente()}}
+{\footnotesize\ttfamily int modifica\+Utente (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{passeggeri }\end{DoxyParamCaption})}
+
+La seguente funzione, permette di modificare le informazione del passeggero. Effettua un algoritmo di modifica per\+:
+\begin{DoxyItemize}
+\item Nome
+\item Cognome
+\item Nome e Cognome
+\item Data di nascita
+\item Comune di nascita
+\item Passaporto Chiede tutti i relativi campi del passeggero stesso, effettua controlli e alla fine scrive su file. La funzione ha codice F03
+\end{DoxyItemize}
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei passeggeri sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Le modifiche dell\textquotesingle{}utente immesso saranno scritte sul file. 
+\end{DoxyPostcond}
+Struct passeggero
+
+File dei passeggeri inizializzato
+
+Variabile contatore che mi serve per uscire dai cicli se il dato richiesto è giusto.
+
+Variabile contatore che mi serve per uscire dai cicli se il dato richiesto è giusto.
+
+Variabile contatore che mi serve per uscire dai cicli se il dato richiesto è giusto.
+
+Variabile contatore che mi serve per uscire dai cicli se il dato richiesto è giusto.
+
+Contatore che mi permette di ritornare al menu una volta arrivato a 0.
+
+Variabile per trovare la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Variabile che userò per immagazzinare l\textquotesingle{}ID dell\textquotesingle{}utente da eliminare.
+
+Variabile che userò per immagazzinare l\textquotesingle{}ID dell\textquotesingle{}utente da modificare.
+
+Variabile che userò per convertire l\textquotesingle{}ID dell\textquotesingle{}utente da char a int.
+
+Contatore che mi permetterà di uscire dal ciclo while.
+
+Immagazzino cosa l\textquotesingle{}utente ha scelto in questa variabile
+
+Vettore su cui memorizzare il nome da modificare.
+
+Vettore su cui memorizzare il cognome da modificare.
+
+Vettore su cui memorizzare il mese da modificare.
+
+Vettore su cui memorizzare il giorno da modificare.
+
+Vettore su cui memorizzare l\textquotesingle{}anno da modificare.
+
+Vettore su cui memorizzare il comune da modificare.
+
+Vettore su cui memorizzare il passaporto da modificare.
+
+Apro il file. Se non esiste, stampo un messaggio di errore.
+
+Finchè correct4 non è uguale a 1, cicla.
+
+Trasformo in intero l\textquotesingle{}ID immesso precedentemente
+
+Tramite la funzione fseek(), mi sposto all\textquotesingle{}utente desiderato.
+
+Se l\textquotesingle{}utente ha immesso un ID diverso da 0 e il nome relativo a quell\textquotesingle{}ID è nullo, allora stampa un errore.
+
+La funzione \hyperlink{controlli_8c_a233801499f59e57e8cecd5a290f05f3e}{Controllo\+Passaporto\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il passaporto è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere devono essere maiuscole. (Es. A\+A1234567)
+
+Confronto il passaporto precedentemente immesso con il passaporto dell\textquotesingle{}utente pescato con la fseek(), sempre precedentemente.
+
+Esco dal ciclo principale.
+
+Esco dal ciclo di login.
+
+Resetto il vettore del passaporto temporaneo e riporto correct2 a 0, altrimenti non entrerà nella while del correct2.
+
+Enterò in questo else solamente quando l\textquotesingle{}utente ha messo un ID non valido.
+
+All\textquotesingle{}inizio wrong sarà uguale a 3.
+
+Quando wrong raggiungerà 0, allora mostrerò il menu.
+
+Finchè s è uguale a 1, eseguo il loop.
+
+Stampo le scelte per l\textquotesingle{}utente.
+
+Immagazzino la scelta nella variabile scelta\+\_\+utente.
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}amministratore abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Switch per controllare cosa l\textquotesingle{}utente ha immesso
+
+Tramite fseek(), mostro all\textquotesingle{}utente il nome che intende modificare.
+
+Finchè correct è uguale a 1, ciclo.
+
+Uso la fgets per poter memorizzare al massimo due nomi. Es. (Francesco Paolo).
+
+La funzione \hyperlink{controlli_8c_a4c5302241f64015d37a78cacafdbde34}{Controllo\+Nome\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il nome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera diventerà maiuscola.
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (g\+Ia\+Nm\+A\+R\+CO =$>$ Gianmarco)
+
+La fgets è conosciuta per inserire un carattere newline alla fine del vettore. Tramite questo algoritmo, controllo se alla fine del vettore stesso, è stato inserito un carattere newline (~\newline
+). Se sì, lo faccio diventare un carattere nullo (\textbackslash{}0).
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+nome).
+
+Copio il nome immesso in nome\+\_\+temporaneo nel membro .nome della struct.
+
+Aggiorno il file e lo chiudo.
+
+Tramite fseek(), mostro all\textquotesingle{}utente il cognome che intende modificare.
+
+Finchè correct è uguale a 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_aaabf473f17c37bc452e693ae5e6da62b}{Controllo\+Cognome\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il cognome è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera diventerà maiuscola.
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (Sc\+Ar\+A\+No =$>$ Scarano)
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+cognome).
+
+Copio il cognome immesso in cognome\+\_\+temporaneo nel membro .cognome della struct.
+
+Aggiorno il file e lo chiudo.
+
+Tramite fseek(), mostro all\textquotesingle{}utente il luogo di nascita che intende modificare.
+
+Finchè correct è uguale a 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a90f37edcb9859318188caebacb7b4085}{Controllo\+Comune\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il comune è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera diventera maiuscola.
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (Al\+T\+A\+Mu\+RA =$>$ Altamura)
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+luogodinascita).
+
+Copio il luogo di nascita immesso in comune\+\_\+temporaneo nel membro .luogodinascita della struct.
+
+Aggiorno il file e lo chiudo.
+
+Tramite fseek(), mostro all\textquotesingle{}utente la data di nascita che intende modificare.
+
+Finchè correct è uguale a 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a1588267e569fc73d97133ffd570a7d75}{Controllo\+Mese\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il mese è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Finchè correct è uguale a 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a007e62f04fd54b64d0415e1b7dc059b9}{Controllo\+Giorno\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il giorno è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Finchè correct è uguale a 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a64ac6f233dcb81b685fb10ffd7067bf3}{Controllo\+Anno\+Utente()}, restituisce 1 o 0. Se è 1 (significa che l\textquotesingle{}anno è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+datadinascita.\+giorno). Copio il giorno di nascita immesso in giorno\+\_\+temporaneo nel membro .datadinascita.\+giorno della struct. Infine, scrivo sul file e lo chiudo.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+datadinascita.\+mese). Copio il mese di nascita immesso in mese\+\_\+temporaneo nel membro .datadinascita.\+mese della struct. Infine, scrivo sul file e lo chiudo.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+datadinascita.\+anno). Copio l\textquotesingle{}anno di nascita immesso in anno\+\_\+temporaneo nel membro .datadinascita.\+anno della struct. Infine, scrivo sul file e lo chiudo.
+
+Tramite fseek(), mostro all\textquotesingle{}utente il passaporto che intende modificare.
+
+Finche correct è diverso da 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a233801499f59e57e8cecd5a290f05f3e}{Controllo\+Passaporto\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il passaporto è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+numeropassaporto).
+
+Copio il passaporto immesso in passaporto\+\_\+temp nel membro .numeropassaporto della struct.
+
+Infine, scrivo sul file e lo chiudo.
+
+Funzione F03a
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente che ha effettuato il login.
+
+Leggendo i suoi dati tramite fread(), copio il suo ID nella variabile \char`\"{}id\+\_\+utente\+\_\+eliminato\char`\"{}, che stamperò successivamente.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente che ha effettuato il login.
+
+Resetto a 0 tutti i membri della struct passeggero.
+
+Infine, scrivo sul file e lo chiudo.
+
+Apro il file in sola lettura.
+
+Mi posizione tramite fseek(), all\textquotesingle{}utente che ha effettuato il login.
+
+Controllo che l\textquotesingle{}utente non sia stato eliminato, verificando se l\textquotesingle{}ID è diverso da 0 e verificando che all\textquotesingle{}interno del vettore nome, ci sia qualcosa di diverso dal carattere nullo
+
+Stampa dell\textquotesingle{}utente
+
+Finche correct3 è diverso da 1, ciclo.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Inizializzo il vettore usato per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Chiamata alla funzione che mi porta al menu precedente (menu utente).
+
+Rendo vero il valore della while e termino il programma con exit(0).
+
+Qui ricadranno tutti i valori non corretti. (caratteri e num $>$ 9). \mbox{\Hypertarget{passeggero_8c_adf81419d2c9ea54416884e6684bcd518}\label{passeggero_8c_adf81419d2c9ea54416884e6684bcd518}} 
+\index{passeggero.\+c@{passeggero.\+c}!ordinamento\+Utenti@{ordinamento\+Utenti}}
+\index{ordinamento\+Utenti@{ordinamento\+Utenti}!passeggero.\+c@{passeggero.\+c}}
+\subsubsection{\texorpdfstring{ordinamento\+Utenti()}{ordinamentoUtenti()}}
+{\footnotesize\ttfamily int ordinamento\+Utenti (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{passeggeri }\end{DoxyParamCaption})}
+
+La funzione, tramite un algoritmo di ordinamento, ordina per nome tutti i passeggeri registrati nel sistema. La funzione ha codice F13.
+
+
+\begin{DoxyParams}{Parametri}
+{\em passeggeri} & File dei passeggeri \\
+\hline
+\end{DoxyParams}
+Se il file non esiste, stampa un messaggio di errore.
+
+Numero di utenti presenti nel sistema
+
+Struct passeggero
+
+Conto quanti utenti ci sono nel file, per poter allocare la memoria giusta.
+
+Salvo l\textquotesingle{}ultimo ID dell\textquotesingle{}utente in una variabile, per poi poter allocare la memoria giusta
+
+Sorting
+
+Funzione compare2(). Consulta la documentazione.
+
+Vettore dinamico degli utenti. E\textquotesingle{} grande tanto quanti sono gli utenti
+
+Funzione qsort(). Mi ordina il vettore precedentemente dichiarato per nome utenti, in ordine alfabetico.
+
+Fine Sorting
+
+Stampa gli utenti ordinati \mbox{\Hypertarget{passeggero_8c_a2d80f9e58b0146a8810e5fd8765bf5c3}\label{passeggero_8c_a2d80f9e58b0146a8810e5fd8765bf5c3}} 
+\index{passeggero.\+c@{passeggero.\+c}!reset\+Utente@{reset\+Utente}}
+\index{reset\+Utente@{reset\+Utente}!passeggero.\+c@{passeggero.\+c}}
+\subsubsection{\texorpdfstring{reset\+Utente()}{resetUtente()}}
+{\footnotesize\ttfamily void reset\+Utente (\begin{DoxyParamCaption}\item[{\hyperlink{structpasseggero}{passeggero} $\ast$}]{utenti1 }\end{DoxyParamCaption})}
+
+La seguente funzione, permette di resettare la struct passeggero prima di inserire un nuovo utente. In questo modo evito indesiderate memorizzazioni precedenti.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che la struct passeggero sia correttamente visibile nel file 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Sarà restituita una struct passeggero pari a 0. 
+\end{DoxyPostcond}
+Resetto a 0 tutti i membri della struct passeggero. 

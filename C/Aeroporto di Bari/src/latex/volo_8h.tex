@@ -1,0 +1,513 @@
+\hypertarget{volo_8h}{}\section{Riferimenti per il file volo.\+h}
+\label{volo_8h}\index{volo.\+h@{volo.\+h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}volo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}define.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}data.\+h\char`\"{}}\newline
+\subsection*{Strutture dati}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structvolo}{volo}
+\end{DoxyCompactItemize}
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{volo_8h_a9dad54ca33dcc96a1e2a821eaba354ad}{input\+Voli} (F\+I\+LE $\ast$voli)
+\item 
+int \hyperlink{volo_8h_a3160aca10d9764dd91677e52a413edbb}{lettura\+Voli} (F\+I\+LE $\ast$voli)
+\item 
+int \hyperlink{volo_8h_acb184b2862df6f832a7e5ee8b7db579e}{modifica\+Voli} (F\+I\+LE $\ast$voli)
+\item 
+int \hyperlink{volo_8h_a5a7a4fcd40515823b008dc17d1d44250}{ricerca\+Voli} (F\+I\+LE $\ast$voli)
+\item 
+int \hyperlink{volo_8h_a7fc3d5b452ea6b469b4b116bca2dafdb}{ordinamento\+Voli} (F\+I\+LE $\ast$voli)
+\item 
+void \hyperlink{volo_8h_ae76fb9130067d9e15a91808355456bfe}{reset\+Volo} (\hyperlink{structvolo}{volo} $\ast$elenco1)
+\item 
+int \hyperlink{volo_8h_aa806f387c5249c0debbc21f857fc132d}{I\+D\+\_\+\+Volo} ()
+\begin{DoxyCompactList}\small\item\em Librerie necessarie per il corretto funzionamento del programma. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Prototipi di funzioni per le informazioni relative ai voli.
+
+Questa libreria contiene essenzialmente la struct per i voli e varie funzioni riguardanti essi (input-\/lettura-\/modifica ecc.) \begin{DoxyVersion}{Versione}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Data}
+13/05/2019 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autori}
+Gianmarco Scarano 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{volo_8h_aa806f387c5249c0debbc21f857fc132d}\label{volo_8h_aa806f387c5249c0debbc21f857fc132d}} 
+\index{volo.\+h@{volo.\+h}!I\+D\+\_\+\+Volo@{I\+D\+\_\+\+Volo}}
+\index{I\+D\+\_\+\+Volo@{I\+D\+\_\+\+Volo}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{I\+D\+\_\+\+Volo()}{ID\_Volo()}}
+{\footnotesize\ttfamily int I\+D\+\_\+\+Volo (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Librerie necessarie per il corretto funzionamento del programma. 
+
+Acquisice l\textquotesingle{}ID dell\textquotesingle{}ultimo volo.
+
+\begin{DoxyReturn}{Restituisce}
+\char`\"{}\+I\+D\char`\"{} se acquisice correttamente l\textquotesingle{}ID dell\textquotesingle{}ultimo volo, altrimenti restituisce 0.
+\end{DoxyReturn}
+Acquisisce l\textquotesingle{}ultimo numero ID tra tutti i voli, posizionandosi all\textquotesingle{}ultima posizione e immagazzinando in una variabile il suddetto ID.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei voli sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+L\textquotesingle{}intero restituito sarà \char`\"{}\+I\+D\char`\"{}, nel caso in cui il file esista. Verrà restituito 0 se non ci sono voli, oppure se il file non esiste. 
+\end{DoxyPostcond}
+Struct del volo
+
+File dei voli inizializzato a N\+U\+LL
+
+All\textquotesingle{}inizio l\textquotesingle{}ID del volo sarà pari a 0.
+
+Tramite fseek(), mi sposto all\textquotesingle{}ultimo rigo del file, attraverso S\+E\+E\+K\+\_\+\+E\+ND. Poi, aggiungendo -\/1 all\textquotesingle{}offset, sono in grado di posizionarmi all\textquotesingle{}ultimo volo del file.
+
+Leggendo il volo, copio l\textquotesingle{}ultimo ID nella variabile \char`\"{}id\char`\"{}
+
+Se l\textquotesingle{}ultimo ID è $<$= 0 (significa che l\textquotesingle{}ultimo volo è stato cancellato) allora, prendo l\textquotesingle{}ID del penultimo volo.
+
+Mi sposto al penultimo volo
+
+Riassegno il penultimo ID nella variabile \char`\"{}id\char`\"{}
+
+Alla funzione, ritorno l\textquotesingle{}intero (ID) trovato. \mbox{\Hypertarget{volo_8h_a9dad54ca33dcc96a1e2a821eaba354ad}\label{volo_8h_a9dad54ca33dcc96a1e2a821eaba354ad}} 
+\index{volo.\+h@{volo.\+h}!input\+Voli@{input\+Voli}}
+\index{input\+Voli@{input\+Voli}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{input\+Voli()}{inputVoli()}}
+{\footnotesize\ttfamily int input\+Voli (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli }\end{DoxyParamCaption})}
+
+Questa procedura apre il file dei voli e registra un nuovo volo nel sistema. Ulteriori funzioni saranno implementate all\textquotesingle{}interno.
+
+
+\begin{DoxyParams}{Parametri}
+{\em voli} & Il file dei voli\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La funzione ritorna 1, se l\textquotesingle{}aggiunta del volo è stata effettuata con successo, ritorna 0 se l\textquotesingle{}aggiunta non è stata effettuata, data la mancanza del file dei voli.
+\end{DoxyReturn}
+La seguente funzione, permette di caricare sul file un nuovo volo. Chiede tutti i relativi campi del volo stesso, effettua controlli e alla fine scrive su file. La funzione ha codice F04
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei voli sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Le informazioni del volo immesso saranno scritte sul file. 
+\end{DoxyPostcond}
+Struct del volo
+
+Variabile che mi farà uscire dai cicli
+
+Variabile su cui copierò il valore dell\textquotesingle{}ultimo volo presente nel sistema e successivamente lo assegnerò al volo che si intende aggiungere, ovviamente incrementandolo di 1. (id+1)
+
+Ricavo l\textquotesingle{}ID dell\textquotesingle{}ultimo volo
+
+Mi posiziono all\textquotesingle{}ultima riga del file
+
+Resetto la struct del volo, prima di immettere dati
+
+Finchè correct è diverso da 1, ciclo
+
+Dichiaro un vettore temporaneo per il codice volo
+
+La funzione \hyperlink{controlli_8c_a574b60fbbad87a4a0a30f16642a85dde}{Controllo\+Codice\+Volo()}, restituisce 1 o 0. Se è 1 (significa che il codice volo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del codice devono essere maiuscole Es. F\+R8252
+
+Copio il codice volo dal vettore temporaneo alla struct
+
+La funzione \hyperlink{controlli_8c_a4ee35630c46bb438b5ab4945440de663}{Controllo\+Nome\+Compagnia()}, restituisce 1 o 0. Se è 1 (significa che il nome della compagnia è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola. Es. (ryanair =$>$ Ryanair)
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (Rya\+N\+A\+Ir =$>$ Ryanair)
+
+La funzione \hyperlink{controlli_8c_ad6ee279c299bb0280a7e751d9310e130}{Controllo\+Tratta\+Partenza()}, restituisce 1 o 0. Se è 1 (significa che la tratta di partenza è stata inserita correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola. Es. (bari =$>$ Bari)
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (Ba\+RI =$>$ Bari)
+
+La funzione \hyperlink{controlli_8c_a284509b1fc7186906821b07426415bc2}{Controllo\+Tratta\+Arrivo()}, restituisce 1 o 0. Se è 1 (significa che la tratta di arrivo è stata inserita correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola. Es. (londra =$>$ Londra)
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (Lon\+D\+Ra =$>$ Londra)
+
+Svuoto eventuale buffer
+
+Uso la fgets per poter memorizzare al massimo due nomi. Es. (Boeing 747).
+
+La funzione \hyperlink{controlli_8c_a0f3837914117076be7ac64a2c43318e0}{Controllo\+Modello\+Aereo()}, restituisce 1 o 0. Se è 1 (significa che il modello dell\textquotesingle{}aereo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola. Es. (boeing =$>$ Boeing)
+
+Faccio diventare minuscole le restanti lettere, a partire dalla posizione 1. Es. (Bo\+E\+I\+NG =$>$ Boeing)
+
+La fgets è conosciuta per inserire un carattere newline alla fine del vettore. Tramite questo algoritmo, controllo se alla fine del vettore stesso, è stato inserito un carattere newline (~\newline
+). Se sì, lo faccio diventare un carattere nullo (\textbackslash{}0).
+
+La funzione \hyperlink{controlli_8c_a6b09e11e6fcdfaeddfed868d373240a7}{Controllo\+Mese()}, restituisce 1 o 0. Se è 1 (significa che il mese del volo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La funzione \hyperlink{controlli_8c_afabe7c426ec82714dd9330749a785957}{Controllo\+Giorno()}, restituisce 1 o 0. Se è 1 (significa che il giorno del volo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La funzione \hyperlink{controlli_8c_a099a2192a3f3f18c4e8b5c273a8eaf21}{Controllo\+Anno()}, restituisce 1 o 0. Se è 1 (significa che l\textquotesingle{}anno del volo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La funzione \hyperlink{controlli_8c_af9cc082664da3b633ac512833136731b}{Controllo\+Orario\+Partenza()}, restituisce 1 o 0. Se è 1 (significa che l\textquotesingle{}orario di partenza è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La funzione \hyperlink{controlli_8c_a3ac6d67bb9f9adaf1037e87e5c557866}{Controllo\+Orario\+Arrivo()}, restituisce 1 o 0. Se è 1 (significa che l\textquotesingle{}orario di arrivo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La funzione \hyperlink{controlli_8c_ac6f4ffcc29682c3c31130be256769e56}{Controllo\+Durata()}, restituisce 1 o 0. Se è 1 (significa che la durata del volo sia stata inserita correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Aumento \char`\"{}id\char`\"{} (il quale contiene l\textquotesingle{}ID dell\textquotesingle{}ultimo volo) di 1 e lo assegno al volo che sto per registrare
+
+All\textquotesingle{}inizio, il volo è aperto per il check-\/in
+
+Scrivo su file e successivamente lo chiudo
+
+Chiudo per prima, la prima apertura del file
+
+Chiudo la seconda apertura del file \mbox{\Hypertarget{volo_8h_a3160aca10d9764dd91677e52a413edbb}\label{volo_8h_a3160aca10d9764dd91677e52a413edbb}} 
+\index{volo.\+h@{volo.\+h}!lettura\+Voli@{lettura\+Voli}}
+\index{lettura\+Voli@{lettura\+Voli}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{lettura\+Voli()}{letturaVoli()}}
+{\footnotesize\ttfamily int lettura\+Voli (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli }\end{DoxyParamCaption})}
+
+La funzione apre il file dei voli e ne legge il contenuto.
+
+
+\begin{DoxyParams}{Parametri}
+{\em voli} & Il file dei voli\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La funzione ritorna 1, se la lettura dei voli è stata effettuata con successo, ritorna 0 se la lettura non è stata effettuata, data la mancanza del file dei voli.
+\end{DoxyReturn}
+La seguente funzione, permette di leggere da file T\+U\+T\+TI i voli presenti. Infine chiede all\textquotesingle{}utente se vuole tornare al menù precedente o uscire dal programma.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei voli sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Le informazioni dei voli presenti saranno stampate. 
+\end{DoxyPostcond}
+Variabile contatore
+
+Variabile che mi permette di leggere tutto il file
+
+Variabile che mi permette di sapere quante prenotazioni ci sono nel sistema.
+
+Variabile che mi permette di sapere se l\textquotesingle{}occorrenza richiesta è stata trovata o meno.
+
+Struct volo
+
+Variabile che conterrà la scelta dell\textquotesingle{}utente per il menù
+
+Leggo fino alla fine del file
+
+Quando read è pari a 0, il file è finito
+
+Se il codice del volo e il nome della compagnia sono diversi dal carattere nullo, allora stampa il volo
+
+Chiudo i voli
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Aumento il contatore delle prenotazioni
+
+Chiudo il file
+
+Inizializzo i vettori usati per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Finchè p è diverso da 1, ciclo.
+
+Immagazzino la scelta dell\textquotesingle{}utente nella variabile sceltautente.
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}utente abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Esco dal while e quindi la funzione termina. Terminata la funzione, mi ritrovo al menù
+
+Esco completamente dal programma \mbox{\Hypertarget{volo_8h_acb184b2862df6f832a7e5ee8b7db579e}\label{volo_8h_acb184b2862df6f832a7e5ee8b7db579e}} 
+\index{volo.\+h@{volo.\+h}!modifica\+Voli@{modifica\+Voli}}
+\index{modifica\+Voli@{modifica\+Voli}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{modifica\+Voli()}{modificaVoli()}}
+{\footnotesize\ttfamily int modifica\+Voli (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli }\end{DoxyParamCaption})}
+
+Questa procedura apre il file dei voli e chiede all\textquotesingle{}utente quali campi del volo vuole modificare. Ulteriori funzioni saranno implementate all\textquotesingle{}interno.
+
+
+\begin{DoxyParams}{Parametri}
+{\em voli} & Il file dei voli\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La funzione ritorna 1, se la modifica del volo è stata effettuata con successo, ritorna 0 se la modifica non è stata effettuata, data la mancanza del file dei voli.
+\end{DoxyReturn}
+La seguente funzione, permette di modificare da file i voli presenti. Tramite un menù interattivo, chiede all\textquotesingle{}utente quale volo e quali campi del volo intende modificare e si comporta a dovere. La funzione ha codice F05.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che il file dei voli sia correttamente caricato nel sistema. 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Le modifiche dei voli verranno successivamente salvate sul file. 
+\end{DoxyPostcond}
+Struct del volo
+
+Inizializzo il file dei voli a N\+U\+LL
+
+Variabile che userò per immagazzinare l\textquotesingle{}ID dell\textquotesingle{}utente da modificare.
+
+Variabile che userò per convertire l\textquotesingle{}ID dell\textquotesingle{}utente da char a int.
+
+Variabile contatore
+
+Variabile contatore
+
+Contatore che mi permette di ritornare al menu una volta arrivato a 0.
+
+Variabile che conterrà l\textquotesingle{}ID del volo da eliminare
+
+Contatore che mi permetterà di uscire dal ciclo while.
+
+Variabile che conterrà la scelta dell\textquotesingle{}utente durante la visualizzazione del menù.
+
+Vettore su cui memorizzare la tratta di partenza che l\textquotesingle{}utente immette al momento della modifica.
+
+Vettore su cui memorizzare la tratta di arrivo che l\textquotesingle{}utente immette al momento della modifica.
+
+Vettore su cui memorizzare il nome compagnia che l\textquotesingle{}utente immette al momento della modifica.
+
+Finchè correct è diverso da 1, ciclo
+
+Finchè correct2 è diverso da 1, ciclo
+
+Trasformo in intero l\textquotesingle{}ID immesso precedentemente
+
+Tramite fseek(), mi muovo al volo richiesto dall\textquotesingle{}utente, con il giusto offset.
+
+Stampo il volo solo se il codice del volo è diverso dal carattere nullo e se l\textquotesingle{}utente ha messo un ID diverso da 0.
+
+Esco dai due cicli
+
+Esco dai due cicli
+
+Nell\textquotesingle{}else ricado, se l\textquotesingle{}utente mette un ID volo non valido.
+
+All\textquotesingle{}inizio wrong sarà uguale a 3.
+
+Quando wrong raggiungerà 0, allora mostrerò il menu.
+
+Svuoto eventuale buffer
+
+Finchè s è uguale a 1, eseguo il loop.
+
+Immagazzino la scelta nella variabile scelta\+\_\+utente.
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}amministratore abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Switch per controllare cosa l\textquotesingle{}utente ha immesso
+
+Tramite fseek(), mi muovo al volo richiesto dall\textquotesingle{}utente, con il giusto offset.
+
+Finchè correct è diverso da 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a34c46f5419593785c4889c82d9eaaa2a}{Controllo\+Tratta\+Partenza\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che la tratta di partenza è stata inserita correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola Es. (bari =$>$ Bari)
+
+Le restanti lettere devono essere minuscole Es. (Ba\+RI =$>$ Bari)
+
+Tramite fseek(), mi posiziono al volo giusto tramite \char`\"{}id\+\_\+volo\char`\"{}, dopo di che mi muovo nel giusto membro (elenco.\+tratta\+\_\+partenza).
+
+Copio quello che l\textquotesingle{}utente ha immesso, nel membro tratta\+\_\+partenza
+
+Scrivo solamente quel membro e chiudo il file
+
+Tramite fseek(), mi muovo al volo richiesto dall\textquotesingle{}utente, con il giusto offset.
+
+Finchè correct è diverso da 1, ciclo.
+
+La funzione \hyperlink{controlli_8c_a082d6a3a9985fc811c149f3806ebaa7f}{Controllo\+Tratta\+Arrivo\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che la tratta di arrivo è stata inserita correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola Es. (bari =$>$ Bari)
+
+Le restanti lettere devono essere minuscole Es. (Ba\+RI =$>$ Bari)
+
+Tramite fseek(), mi posiziono al volo giusto tramite \char`\"{}id\+\_\+volo\char`\"{}, dopo di che mi muovo nel giusto membro (elenco.\+tratta\+\_\+arrivo).
+
+Copio quello che l\textquotesingle{}utente ha immesso, nel membro tratta\+\_\+arrivo
+
+Scrivo solamente quel membro e chiudo il file
+
+Tramite fseek(), mi muovo al volo richiesto dall\textquotesingle{}utente, con il giusto offset.
+
+Finchè correct è diverso da 1, ciclo
+
+La funzione \hyperlink{controlli_8c_a2ad48f40185115310590293d2ce2885c}{Controllo\+Nome\+Compagnia\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il nome compagnia è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+La prima lettera deve essere maiuscola Es. (ryanair =$>$ Ryanair)
+
+Le restanti lettere devono essere minuscole Es. (Ryan\+A\+IR =$>$ Ryanair)
+
+Tramite fseek(), mi posiziono al volo giusto tramite \char`\"{}id\+\_\+volo\char`\"{}, dopo di che mi muovo nel giusto membro (elenco.\+nomecompagnia).
+
+Copio quello che l\textquotesingle{}utente ha immesso, nel membro nomecompagnia
+
+Scrivo solamente quel membro e chiudo il file
+
+Funzione F05a
+
+Tramite fseek(), mi muovo al volo richiesto dall\textquotesingle{}utente, con il giusto offset.
+
+Immagazzino l\textquotesingle{}ID di questo volo in una variabile, per poi stamparla successivamente
+
+Faccio la stessa operazione di prima tramite fseek(). La rifaccio poichè nel caso in cui non la facessi, e lasciassi l\textquotesingle{}fseek() precedente, l\textquotesingle{}algoritmo non prende il giusto volo per un motivo strano.
+
+Resetto tutta la stuct del volo
+
+Aggiorno il file scrivendo una struct azzerata e chiudo il file
+
+Tramite fseek(), mi muovo al volo richiesto dall\textquotesingle{}utente, con il giusto offset.
+
+Effettuo una semplice stampa del volo
+
+Chiamata alla funzione che mi porta al menu precedente (menu utente).
+
+Rendo vero il valore della while e termino il programma con exit(0).
+
+Qui ricadranno tutti i valori non corretti. (caratteri e num $>$ 9). \mbox{\Hypertarget{volo_8h_a7fc3d5b452ea6b469b4b116bca2dafdb}\label{volo_8h_a7fc3d5b452ea6b469b4b116bca2dafdb}} 
+\index{volo.\+h@{volo.\+h}!ordinamento\+Voli@{ordinamento\+Voli}}
+\index{ordinamento\+Voli@{ordinamento\+Voli}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{ordinamento\+Voli()}{ordinamentoVoli()}}
+{\footnotesize\ttfamily int ordinamento\+Voli (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli }\end{DoxyParamCaption})}
+
+Questa procedura apre il file dei voli e ordina in base al codice volo, tutti i voli.
+
+
+\begin{DoxyParams}{Parametri}
+{\em voli} & Il file dei voli\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La funzione ritorna 1, se l\textquotesingle{}ordinamento è stato effettuato con successo, ritorna 0 se l\textquotesingle{}ordinamento non è stato effettuato, data la mancanza del file dei passeggeri.
+\end{DoxyReturn}
+La funzione, tramite un algoritmo di ordinamento, ordina per codice volo, tutti i voli registrati nel sistema. La funzione ha codice F15.
+
+
+\begin{DoxyParams}{Parametri}
+{\em voli} & File dei voli \\
+\hline
+\end{DoxyParams}
+Se il file non esiste, stampa un messaggio di errore.
+
+Numero di voli presenti nel sistema
+
+Struct volo
+
+Conto quanti voli ci sono nel file, per poter allocare la memoria giusta.
+
+Salvo l\textquotesingle{}ultimo ID dell\textquotesingle{}ultimo volo in una variabile, per poi poter allocare la memoria giusta
+
+Sorting
+
+Funzione compare2(). Consulta la documentazione.
+
+Vettore dinamico dei voli. E\textquotesingle{} grande tanto quanti sono i voli
+
+Funzione qsort(). Mi ordina il vettore precedentemente dichiarato per codice volo, in ordine alfabetico.
+
+Fine Sorting
+
+Stampa i voli ordinati \mbox{\Hypertarget{volo_8h_ae76fb9130067d9e15a91808355456bfe}\label{volo_8h_ae76fb9130067d9e15a91808355456bfe}} 
+\index{volo.\+h@{volo.\+h}!reset\+Volo@{reset\+Volo}}
+\index{reset\+Volo@{reset\+Volo}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{reset\+Volo()}{resetVolo()}}
+{\footnotesize\ttfamily void reset\+Volo (\begin{DoxyParamCaption}\item[{\hyperlink{structvolo}{volo} $\ast$}]{elenco1 }\end{DoxyParamCaption})}
+
+Questa procedura resetta a 0 tutti i membri della struct volo, prima di inserire un nuovo volo nel sistema.
+
+
+\begin{DoxyParams}{Parametri}
+{\em elenco1} & La struct del volo da resettare\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La funzione, essendo procedura, non ha nessun parametro di return.
+\end{DoxyReturn}
+La seguente funzione, permette di resettare la struct volo prima di inserire un nuovo volo. In questo modo evito indesiderate memorizzazioni precedenti.
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione, per funzionare correttamente, ha bisogno che la struct volo sia correttamente visibile nel file 
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+Sarà restituita una struct volo pari a 0. 
+\end{DoxyPostcond}
+Resetto a 0 tutti i membri della struct volo. \mbox{\Hypertarget{volo_8h_a5a7a4fcd40515823b008dc17d1d44250}\label{volo_8h_a5a7a4fcd40515823b008dc17d1d44250}} 
+\index{volo.\+h@{volo.\+h}!ricerca\+Voli@{ricerca\+Voli}}
+\index{ricerca\+Voli@{ricerca\+Voli}!volo.\+h@{volo.\+h}}
+\subsubsection{\texorpdfstring{ricerca\+Voli()}{ricercaVoli()}}
+{\footnotesize\ttfamily int ricerca\+Voli (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli }\end{DoxyParamCaption})}
+
+Questa procedura apre l\textquotesingle{}interfaccia per la ricerca di un volo. Ulteriori funzioni/controlli saranno implementati all\textquotesingle{}interno.
+
+
+\begin{DoxyParams}{Parametri}
+{\em voli} & File dei voli\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Restituisce}
+La funzione ritorna 1, se la ricerca del volo è stata effettuata con successo, ritorna 0 se il volo non esiste, oppure se il file dei voli non è presente.
+\end{DoxyReturn}
+La funzione chiede un codice volo all\textquotesingle{}amministratore e verifica se quel codice volo è inserito nel sistema o meno. Se esiste, procede con la stampa dell\textquotesingle{}volo per quel codice, altrimenti mostra all\textquotesingle{}amministratore un messaggio di errore. La funzione ha codice F11
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione richiede che il file dei voli, esista.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+La funzione mostra il volo per quel codice immesso o può mostrare un messaggio di errore se il file o il volo non esiste. 
+\end{DoxyPostcond}
+Struct volo
+
+Variabile contatore che mi permetterà di uscire dai cicli se il dato richiesto è giusto.
+
+Variabile che mi permette la lettura del file. Quando read = 0, allora la lettura è finita.
+
+Variabile che servirà a dire se il codice di prenotazione esiste.
+
+Dichiaro un vettore temporaneo per il passaporto
+
+Finchè correct è diverso da 1, ciclo
+
+La funzione \hyperlink{controlli_8c_a574b60fbbad87a4a0a30f16642a85dde}{Controllo\+Codice\+Volo()}, restituisce 1 o 0. Se è 1 (significa che il codice volo è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del codice devono essere maiuscole Es. F\+R8252
+
+Ritorno 0 se il file non esiste.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read è pari a 0, il file è finito
+
+Scorro tutto il vettore delle prenotazioni per ogni utente presente nel sistema. Se il codice immesso dall\textquotesingle{}amministratore, coincide con uno presente nel vettore delle prenotazioni, allora stampo l\textquotesingle{}utente relativo a quella prenotazione.
+
+Aumento il contatore delle prenotazioni trovate
+
+Entro nella if solo se non ha trovato nessuna prenotazione 

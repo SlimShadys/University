@@ -1,0 +1,586 @@
+\hypertarget{prenotazione_8c}{}\section{Riferimenti per il file prenotazione.\+c}
+\label{prenotazione_8c}\index{prenotazione.\+c@{prenotazione.\+c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}prenotazione.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}passeggero.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}volo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}menu.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}controlli.\+h\char`\"{}}\newline
+\subsection*{Funzioni}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{prenotazione_8c_a04c3d07188feef0e4b16f8a5292c0e71}{prenota\+Volo} (F\+I\+LE $\ast$voli, F\+I\+LE $\ast$passeggeri)
+\begin{DoxyCompactList}\small\item\em Librerie necessarie per il corretto funzionamento del programma. \end{DoxyCompactList}\item 
+int \hyperlink{prenotazione_8c_a315fbf4481da0e8f9075a610eb219628}{checkin} (F\+I\+LE $\ast$voli, F\+I\+LE $\ast$passeggeri)
+\item 
+int \hyperlink{prenotazione_8c_a045510394d1e05fa2d7254f2fc494162}{modifica\+Prenotazione} (F\+I\+LE $\ast$passeggeri, int id\+\_\+utente)
+\item 
+int \hyperlink{prenotazione_8c_a86dda93023d5f1b60ae34d6b92c5842b}{ricerca\+Prenotazione} (F\+I\+LE $\ast$passeggeri)
+\item 
+int \hyperlink{prenotazione_8c_a8a5ffb8f9d9f058d61caf2264d08162a}{ordinamento\+Prenotazioni} (F\+I\+LE $\ast$passeggeri)
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrizione dettagliata}
+Questo file contiene le implementazioni dei prototipi dichiarati nel file \hyperlink{prenotazione_8h}{prenotazione.\+h} \begin{DoxyVersion}{Versione}
+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Data}
+13/05/2019 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Autori}
+Gianmarco Scarano 
+\end{DoxyAuthor}
+
+
+\subsection{Documentazione delle funzioni}
+\mbox{\Hypertarget{prenotazione_8c_a315fbf4481da0e8f9075a610eb219628}\label{prenotazione_8c_a315fbf4481da0e8f9075a610eb219628}} 
+\index{prenotazione.\+c@{prenotazione.\+c}!checkin@{checkin}}
+\index{checkin@{checkin}!prenotazione.\+c@{prenotazione.\+c}}
+\subsubsection{\texorpdfstring{checkin()}{checkin()}}
+{\footnotesize\ttfamily int checkin (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli,  }\item[{F\+I\+LE $\ast$}]{passeggeri }\end{DoxyParamCaption})}
+
+La funzione, dopo un login valido da parte dell\textquotesingle{}utente, chiede un codice prenotazione. Essa è capace di verificare se quel codice prenotazione esiste o meno. Se esiste, procede con l\textquotesingle{}assegnazione di un posto per quel volo. Se non esiste, richiede un nuovo codice. La funzione ha codice F09
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione richiede che il file dei voli e passeggeri, esistano.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+La funzione può far ritornare l\textquotesingle{}utente al menù, dopo aver sbagliato tre volte il codice prenotazione. Se l\textquotesingle{}utente inserisce un codice prenotazione valido, allora procede con l\textquotesingle{}assegnazione di un posto. 
+\end{DoxyPostcond}
+Struct volo
+
+Struct passeggero
+
+Variabile che userò per immagazzinare l\textquotesingle{}ID dell\textquotesingle{}utente da modificare.
+
+Serie di variabili contatori che mi serviranno per uscire dai cicli se il dato richiesto è giusto.
+
+Variabile che userò per convertire l\textquotesingle{}ID dell\textquotesingle{}utente da char a int.
+
+Ricavo l\textquotesingle{}ID dell\textquotesingle{}ultimo utente tramite la funzione \hyperlink{passeggero_8c_ae766664acc6f174203967f006291f025}{I\+D\+\_\+\+Utente()} e lo immagazzino nella variabile \char`\"{}id\char`\"{}, la quale mi servirà successivamente.
+
+Variabile che servirà a dire se il codice di prenotazione esiste.
+
+Variabile che servirà a dire se il codice di prenotazione non esiste.
+
+Variabile che mi servirà a contenere il posto per l\textquotesingle{}utente
+
+Variabile per trovare la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Variabile che conterrà la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Contatore che mi conta quanti posti sono stati occupati. Se il contatore arriva a 150, significa che tutti gli utenti si sono imbarcati.
+
+Vettore su cui memorizzare il passaporto immesso dall\textquotesingle{}utente al momento del login.
+
+Vettore su cui memorizzare il codice prenotazione immesso dall\textquotesingle{}utente al momento del login.
+
+Finchè correct1 non è uguale a 1, ciclo.
+
+Trasformo in intero l\textquotesingle{}ID immesso precedentemente
+
+Se l\textquotesingle{}utente ha immesso un ID uguale a 0 oppure se il \char`\"{}numero\+\_\+utente\char`\"{} $>$ della variabile \char`\"{}id\char`\"{} (Che contiene l\textquotesingle{}ID dell\textquotesingle{}ultimo utente), allora stampa un errore.
+
+Resetto il vettore dell\textquotesingle{}ID immesso dall\textquotesingle{}utente.
+
+Tramite isalpha() controllo se sono stati inseriti due caratteri alfabetici.
+
+Finchè correct2 è diverso da 1, ciclo
+
+La funzione \hyperlink{controlli_8c_a233801499f59e57e8cecd5a290f05f3e}{Controllo\+Passaporto\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il passaporto è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del passaporto devono essere maiuscole Es. A\+A1234567
+
+Confronto il passaporto precedentemente immesso con il passaporto dell\textquotesingle{}utente pescato con la fseek(), sempre precedentemente.
+
+Necessario per una if successiva.
+
+Se entro nell\textquotesingle{}else, il passaporto non coincide.
+
+Resetto correct2, altrimenti non entro
+
+nel ciclo di input del passaporto.
+
+Se il passaporto coincide, allora vado avanti con il codice prenotazione.
+
+La funzione \hyperlink{controlli_8c_ab235ffe5fb8886ae9e6f5d596a15a052}{Controllo\+Codice\+Prenotazione()}, restituisce 1 o 0. Se è 1 (significa che il codice è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del codice prenotazione devono essere maiuscole. Es. A\+A123
+
+Se il codice è stato correttamente inserito, vado avanti.
+
+Scorro tutto il vettore delle prenotazione dell\textquotesingle{}utente
+
+Controllo se il codice inserito precedentemente coincide con almeno uno presente nel vettore di prenotazioni dell\textquotesingle{}utente.
+
+Se coincide, copio la giusta posizione del vettore prenotazione in una variabile chiamata \char`\"{}codice\char`\"{}, che userò successivamente.
+
+Aumento il contatore dei \char`\"{}trovati\char`\"{}.
+
+Se al primo for non trovo il codice prenotazione richiesto, aumento il contatore dei \char`\"{}non trovati\char`\"{}. Ciclo così per tutto il for.
+
+Se ha trovato almeno una corrispondenza, allora procedo a vedere se l\textquotesingle{}utente ha già effettuato questo check-\/in tramite un flag che diventa 1 al momento della prenotazione. Uso \char`\"{}codice\char`\"{} come indice del vettore, perchè quando trovo l\textquotesingle{}occorrenza, copio \char`\"{}num\char`\"{} in \char`\"{}codice\char`\"{}.
+
+Resetto tutte le variabili dei vari cicli e resetto i vettori temporanei.
+
+Il check-\/in è andato a buon fine, quindi esco da tutti i cicli e proseguo con l\textquotesingle{}assegnamento del posto.
+
+Qui ci entrerò solamente se il contatore dei \char`\"{}non trovati\char`\"{} è uguale al massimo di prenotazioni disponibili. Significa che non esiste un codice prenotazione tale.
+
+Resetto tutte le variabili dei vari cicli e resetto i vettori temporanei.
+
+Tramite fseek(), mi sposto al giusto utente e sempre tramite offset, mi sposto al membro giusto (in questo caso è p\mbox{[}codice\mbox{]}.elenco.\+posti) per poter scrivere il posto e l\textquotesingle{}effettiva riuscita del check-\/in.
+
+Finchè correct4 è diverso da 1, ciclo.
+
+Variabile per leggere tutto il file
+
+Quando read arriva a 0, significa che il file è finito.
+
+Confronto il codice volo della prenotazione, con il codice volo di tutti i voli presenti nel sistema. Dato che il codice volo è unico, una volta trovata la coincidenza, andrò ad inserire un posto random per quel volo e lo occuperò tramite funzione booleana.
+
+Genere un numero random da 0 a 150.
+
+Finchè quel posto è uguale ad 1 (significa che è stato già preso), cicla.
+
+Occupo il posto per questo utente ed esco dal ciclo.
+
+Tramite fseek(), mi posiziono al volo giusto tramite \char`\"{}elenco.\+id\char`\"{}, dopo di che mi muovo nel giusto membro (elenco.\+posti).
+
+Controllo, scorrendo il vettore, se tutti i posti sono stati presi
+
+Se contatore\+\_\+posti arriva a 150 (M\+A\+X\+\_\+\+P\+O\+S\+TI), allora tutti gli utenti per quel volo, hanno effettuato il check-\/in.
+
+Una volta aggiornato il file, lo chiudo
+
+Esco dal ciclo
+
+Scrivo il posto dell\textquotesingle{}utente su file
+
+Tramite fseek(), mi sposto al giusto utente e sempre tramite offset, mi sposto al membro giusto (in questo caso è p\mbox{[}codice\mbox{]}.posto) per poter scrivere il posto assegnato all\textquotesingle{}utente.
+
+Copio il posto generato nella variabile posto, all\textquotesingle{}interno del vettore prenotazione.
+
+Scrivo su file e chiudo.
+
+Tramite fseek(), mi sposto al giusto utente e sempre tramite offset, mi sposto al membro giusto (in questo caso è p\mbox{[}codice\mbox{]}.controllo\+\_\+checkin) per poter constatare l\textquotesingle{}effettivo check-\/in.
+
+Gli assegno 1, in modo tale che nel caso in cui l\textquotesingle{}utente dovesse rifare il check-\/in, non gli sarà permesso dato che il controllo del check-\/in per questa prenotazione è impostato ad 1. \mbox{\Hypertarget{prenotazione_8c_a045510394d1e05fa2d7254f2fc494162}\label{prenotazione_8c_a045510394d1e05fa2d7254f2fc494162}} 
+\index{prenotazione.\+c@{prenotazione.\+c}!modifica\+Prenotazione@{modifica\+Prenotazione}}
+\index{modifica\+Prenotazione@{modifica\+Prenotazione}!prenotazione.\+c@{prenotazione.\+c}}
+\subsubsection{\texorpdfstring{modifica\+Prenotazione()}{modificaPrenotazione()}}
+{\footnotesize\ttfamily int modifica\+Prenotazione (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{passeggeri,  }\item[{int}]{id\+\_\+utente }\end{DoxyParamCaption})}
+
+La funzione, la quale non ha bisogno di un login (dato che ha come parametro di input l\textquotesingle{}ID dell\textquotesingle{}utente), chiede un codice prenotazione. Essa è capace di verificare se quel codice prenotazione esiste o meno. Se esiste, procede con la modifica del posto (qui, ulteriori controlli su un posto già assegnato sono implementati) per quella prenotazione o può addirittura cancellare la prenotazione stessa. La funzione ha codice F07
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione richiede che il file dei passeggeri, esista.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+La funzione può modificare/cancellare una prenotazione con successo se il codice prenotazione esiste. Se l\textquotesingle{}utente inserisce un codice prenotazione non valido, l\textquotesingle{}algoritmo lo segnalerà. 
+\end{DoxyPostcond}
+Struct passeggero
+
+Struct volo
+
+Dichiaro una variabile di tipo file, che mi servirà per i voli.
+
+Contatore che mi permetterà di uscire dal ciclo while.
+
+Variabile equivalente ad una carattere \char`\"{}barra spaziatrice\char`\"{}.
+
+Variabile equivalente al carattere \char`\"{}new line\char`\"{}, ovvero \char`\"{}invio\char`\"{}.
+
+Variabile dove memorizzare quanti \char`\"{}spazi\char`\"{} ci sono in una stringa.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Immagazzino cosa l\textquotesingle{}utente ha scelto in questa variabile
+
+Serie di variabili contatori che mi serviranno per uscire dai cicli se il dato richiesto è giusto.
+
+Vettore su cui memorizzare il codice prenotazione immesso dall\textquotesingle{}utente al momento del login.
+
+Vettore su cui memorizzare il posto che l\textquotesingle{}utente desidera immettere al momento della modifica della prenotazione.
+
+Variabile che servirà a dire se il codice di prenotazione non esiste.
+
+Variabile che servirà a dire se il codice di prenotazione esiste.
+
+Variabile per trovare la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Variabile che conterrà la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Se il file non esiste, stampa un messaggio di errore.
+
+Finchè s è uguale a 1, eseguo il loop.
+
+Immagazzino la scelta nella variabile scelta\+\_\+utente.
+
+Programmazione difensiva che cattura i caratteri, nel caso in cui l\textquotesingle{}amministratore abbia immesso dei caratteri invece dei numeri. Converto i caratteri in numeri e li faccio ricadere nel \char`\"{}default\char`\"{} della switch, stampando un messaggio d\textquotesingle{}errore.
+
+Switch per controllare cosa l\textquotesingle{}utente ha immesso
+
+La funzione \hyperlink{controlli_8c_ab235ffe5fb8886ae9e6f5d596a15a052}{Controllo\+Codice\+Prenotazione()}, restituisce 1 o 0. Se è 1 (significa che il codice è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del codice prenotazione devono essere maiuscole. Es. A\+A123
+
+Se il codice è stato correttamente inserito, vado avanti.
+
+Scorro tutto il vettore delle prenotazione dell\textquotesingle{}utente
+
+Controllo se il codice inserito precedentemente coincide con almeno uno presente nel vettore di prenotazioni dell\textquotesingle{}utente.
+
+Se coincide, copio la giusta posizione del vettore prenotazione
+
+in una variabile chiamata \char`\"{}codice\char`\"{}, che userò successivamente.
+
+Aumento il contatore dei \char`\"{}trovati\char`\"{}.
+
+Se al primo for non trovo il codice prenotazione richiesto,
+
+aumento il contatore dei \char`\"{}non trovati\char`\"{}. Ciclo così per tutto il for.
+
+Se ha trovato almeno una corrispondenza, allora procedo a vedere se l\textquotesingle{}utente ha già effettuato questo check-\/in tramite un flag che diventa 1 al momento della prenotazione. Uso \char`\"{}codice\char`\"{} come indice del vettore, perchè quando trovo l\textquotesingle{}occorrenza, copio \char`\"{}num\char`\"{} in \char`\"{}codice\char`\"{}.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+numeropassaporto).
+
+Converto più semplicemente in intero, il posto scelto dall\textquotesingle{}utente
+
+Controllo se l\textquotesingle{}utente ha inserito un posto non valido. Max. 150, min 0.
+
+Controllo se alla posizione \mbox{[}0\mbox{]}-\/\mbox{[}1\mbox{]}-\/\mbox{[}2\mbox{]} del vettore, c\textquotesingle{}è un carattere alfabetico.
+
+Scorrimento e controllo vettore
+
+Se trova uno spazio, aumenta la variabile \char`\"{}spazio\char`\"{} di 1.
+
+Per poter verificare se ci sono due spazi, la variabile \char`\"{}spazio\char`\"{} deve essere almeno pari a 2.
+
+Controllo se alla posizione \mbox{[}0\mbox{]} del vettore, c\textquotesingle{}è uno spazio. Il che significa che l\textquotesingle{}utente ha inserito la barra spaziatrice come primo carattere.
+
+Se la if è verificata, stampo a video un messaggio d\textquotesingle{}errore ed esco dalla funzione con correct = 0, e ripeto tutta la funzione.
+
+Stampa un messaggio di errore se all\textquotesingle{}inizio è stato immesso un carattere new line. Controllo solo la prima posizione del vettore con il carattere \char`\"{}\textbackslash{}n\char`\"{}.
+
+Se la if è verificata, esco dalla funzione con correct = 0 e ripeto il tutto.
+
+Variabile per leggere tutto il file
+
+Quando read arriva a 0, significa che il file è finito.
+
+Confronto il codice volo della prenotazione, con il codice volo di tutti i voli presenti nel sistema. Dato che il codice volo è unico, una volta trovata la coincidenza, andrò ad inserire un posto random per quel volo e lo occuperò tramite funzione booleana.
+
+Se il valore di quell\textquotesingle{}indice del vettore è pari ad 1, significa che il posto è già stato preso.
+
+Occupo il posto per questo utente ed esco dal ciclo.
+
+Tramite fseek(), mi posiziono al volo giusto tramite \char`\"{}elenco.\+id\char`\"{}, dopo di che mi muovo nel giusto membro (elenco.\+posti).
+
+Una volta aggiornato il file, lo chiudo
+
+Tramite fseek(), mi sposto al giusto utente e sempre tramite offset, mi sposto al membro giusto (in questo caso è p\mbox{[}codice\mbox{]}.posto) per poter scrivere il posto assegnato all\textquotesingle{}utente.
+
+Copio il posto scelto dall\textquotesingle{}utente nella variabile val, all\textquotesingle{}interno del vettore prenotazione.
+
+Scrivo su file e chiudo.
+
+Qui ci entrerò solamente se il contatore dei \char`\"{}non trovati\char`\"{} è uguale al massimo di prenotazioni disponibili. Significa che non esiste un codice prenotazione tale.
+
+Resetto tutte le variabili dei vari cicli e resetto i vettori temporanei.
+
+La funzione ha codice F07a
+
+La funzione \hyperlink{controlli_8c_ab235ffe5fb8886ae9e6f5d596a15a052}{Controllo\+Codice\+Prenotazione()}, restituisce 1 o 0. Se è 1 (significa che il codice è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del codice prenotazione devono essere maiuscole. Es. A\+A123
+
+Se il codice è stato correttamente inserito, vado avanti.
+
+Scorro tutto il vettore delle prenotazione dell\textquotesingle{}utente
+
+Controllo se il codice inserito precedentemente coincide con almeno uno presente nel vettore di prenotazioni dell\textquotesingle{}utente.
+
+Se coincide, copio la giusta posizione del vettore prenotazione
+
+in una variabile chiamata \char`\"{}codice\char`\"{}, che userò successivamente.
+
+Aumento il contatore dei \char`\"{}trovati\char`\"{}.
+
+Se al primo for non trovo il codice prenotazione richiesto,
+
+aumento il contatore dei \char`\"{}non trovati\char`\"{}. Ciclo così per tutto il for.
+
+Se ha trovato almeno una corrispondenza, allora procedo a vedere se l\textquotesingle{}utente ha già effettuato questo check-\/in tramite un flag che diventa 1 al momento della prenotazione. Uso \char`\"{}codice\char`\"{} come indice del vettore, perchè quando trovo l\textquotesingle{}occorrenza, copio \char`\"{}num\char`\"{} in \char`\"{}codice\char`\"{}.
+
+Tramite fseek(), mi posiziono all\textquotesingle{}utente giusto tramite \char`\"{}numeroutente\char`\"{}, dopo di che mi muovo nel giusto membro (utenti.\+numeropassaporto).
+
+La cancellazione è andata a buon fine, quindi esco da tutti i cicli.
+
+Qui ci entrerò solamente se il contatore dei \char`\"{}non trovati\char`\"{} è uguale al massimo di prenotazioni disponibili. Significa che non esiste un codice prenotazione tale.
+
+Resetto tutte le variabili dei vari cicli e resetto i vettori temporanei.
+
+Apro il file in sola lettura.
+
+Mi posizione tramite fseek(), all\textquotesingle{}utente che ha effettuato il login.
+
+Controllo che l\textquotesingle{}utente non sia stato eliminato, verificando se l\textquotesingle{}ID è diverso da 0 e verificando che all\textquotesingle{}interno del vettore nome, ci sia qualcosa di diverso dal carattere nullo
+
+Stampa dell\textquotesingle{}utente
+
+Finche correct3 è diverso da 1, ciclo.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi la stampo.
+
+Controllo se l\textquotesingle{}utente ha effettuato il check-\/in per questa prenotazione tramite un flag che sarà uguale ad 1 solo nel caso in cui l\textquotesingle{}utente effettua il check-\/in.
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Inizializzo il vettore usato per la ricerca e tutte le altre variabili per una eventuale nuova ricerca.
+
+Chiamata alla funzione che mi porta al menu precedente (menu utente).
+
+Rendo vero il valore della while e termino il programma con exit(0).
+
+Qui ricadranno tutti i valori non corretti. (caratteri e num $>$ 9). \mbox{\Hypertarget{prenotazione_8c_a8a5ffb8f9d9f058d61caf2264d08162a}\label{prenotazione_8c_a8a5ffb8f9d9f058d61caf2264d08162a}} 
+\index{prenotazione.\+c@{prenotazione.\+c}!ordinamento\+Prenotazioni@{ordinamento\+Prenotazioni}}
+\index{ordinamento\+Prenotazioni@{ordinamento\+Prenotazioni}!prenotazione.\+c@{prenotazione.\+c}}
+\subsubsection{\texorpdfstring{ordinamento\+Prenotazioni()}{ordinamentoPrenotazioni()}}
+{\footnotesize\ttfamily int ordinamento\+Prenotazioni (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{passeggeri }\end{DoxyParamCaption})}
+
+La funzione, tramite un algoritmo di ordinamento, ordina in ordine alfabetico tutte le prenotazioni registrate nel sistema. La funzione ha codice F14.
+
+
+\begin{DoxyParams}{Parametri}
+{\em passeggeri} & File dei passeggeri \\
+\hline
+\end{DoxyParams}
+Se il file non esiste, stampa un messaggio di errore.
+
+Variabile per trovare la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Variabile che mi permette la lettura del file. Quando read = 0, allora la lettura è finita.
+
+Variabile che mi permette di sapere quante prenotazioni ci sono nel sistema.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Variabile che userò per verificare se l\textquotesingle{}utente ha già una prenotazione o meno.
+
+Variabile che mi permetterà di uscire dal ciclo
+
+Struct passeggero
+
+Apro il file in sola lettura.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Finchè correct2 non è uguale a 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione.
+
+Aumento il contatore delle prenotazioni
+
+Passo alla prossima prenotazione. Se prima p\mbox{[}num\mbox{]}, era p\mbox{[}0\mbox{]}, ora sarà p\mbox{[}1\mbox{]}. In questo caso ricontrollo se l\textquotesingle{}utente ha un\textquotesingle{}altra prenotazione.
+
+Esco subito dal ciclo non appena l\textquotesingle{}algoritmo non trova una prenotazione disponibile.
+
+Resetto le variabili
+
+Chiudo il file
+
+Sorting
+
+Vettore dinamico delle prenotazioni. E\textquotesingle{} grande tanto quanti sono le prenotazioni
+
+Funzione qsort(). Mi ordina il vettore precedentemente dichiarato per prenotazioni, in ordine alfabetico. Riferirsi alla documentazione.
+
+Fine Sorting
+
+Stampa le prenotazioni ordinate
+
+Non stampare utenti cancellati. \mbox{\Hypertarget{prenotazione_8c_a04c3d07188feef0e4b16f8a5292c0e71}\label{prenotazione_8c_a04c3d07188feef0e4b16f8a5292c0e71}} 
+\index{prenotazione.\+c@{prenotazione.\+c}!prenota\+Volo@{prenota\+Volo}}
+\index{prenota\+Volo@{prenota\+Volo}!prenotazione.\+c@{prenotazione.\+c}}
+\subsubsection{\texorpdfstring{prenota\+Volo()}{prenotaVolo()}}
+{\footnotesize\ttfamily int prenota\+Volo (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{voli,  }\item[{F\+I\+LE $\ast$}]{passeggeri }\end{DoxyParamCaption})}
+
+
+
+Librerie necessarie per il corretto funzionamento del programma. 
+
+La funzione, chiede il login all\textquotesingle{}utente. Successivamente chiede quale volo prenotare e lo assegna all\textquotesingle{}utente, fornendogli un codice prenotazione. La funzione ha codice F06
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione richiede che il file dei voli e passeggeri, esistano.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+La funzione può far ritornare l\textquotesingle{}utente al menù, dopo aver sbagliato tre volte la prenotazione del volo (l\textquotesingle{}utente sbaglia se immette un volo già prenotato). Se l\textquotesingle{}utente sceglie un volo non prenotato, allora la funzione procede con la prenotazione. 
+\end{DoxyPostcond}
+Struct dei voli
+
+Struct dei passeggeri
+
+Variabile che userò per immagazzinare l\textquotesingle{}ID dell\textquotesingle{}utente da modificare.
+
+Variabile che userò per immagazzinare l\textquotesingle{}ID dell\textquotesingle{}utente da modificare.
+
+Serie di variabili contatori che mi serviranno per uscire dai cicli se il dato richiesto è giusto.
+
+Valore che indica se una prenotazione è già stata effettuata o meno.
+
+Contatore che mi permette di ritornare al menu una volta arrivato a 0.
+
+Contatore che, nel caso arrivi a 10, significa che l\textquotesingle{}utente ha tutte le prenotazioni piene
+
+Variabile per trovare la giusta posizione nel vettore \char`\"{}prenotazione\char`\"{} dentro la struct passeggero.
+
+Variabile che immagazzinerà la scelta del volo.
+
+Variabile che userò per convertire l\textquotesingle{}ID dell\textquotesingle{}utente da char a int.
+
+Ricavo l\textquotesingle{}ID dell\textquotesingle{}ultimo utente tramite la funzione \hyperlink{passeggero_8c_ae766664acc6f174203967f006291f025}{I\+D\+\_\+\+Utente()} e lo immagazzino nella variabile \char`\"{}id\char`\"{}, la quale mi servirà successivamente.
+
+Vettore su cui memorizzare il passaporto da confrontare con quello dell\textquotesingle{}utente, al momento del login.
+
+Variabile che userò per convertire l\textquotesingle{}ID del volo da char a int.
+
+Finchè correct è diverso da 1, cicla.
+
+Finchè correct5 è diverso da 1, cicla.
+
+Trasformo in intero l\textquotesingle{}ID immesso precedentemente
+
+Se l\textquotesingle{}utente ha immesso un ID uguale a 0 oppure se il \char`\"{}numero\+\_\+utente\char`\"{} $>$ della variabile \char`\"{}id\char`\"{} (Che contiene l\textquotesingle{}ID dell\textquotesingle{}ultimo utente), allora stampa un errore.
+
+Resetto il vettore dell\textquotesingle{}ID immesso dall\textquotesingle{}utente.
+
+Tramite isalpha() controllo se sono stati inseriti due caratteri alfabetici.
+
+Esco dal ciclo, se l\textquotesingle{}input è corretto.
+
+Attraverso la fseek(), mi sposto all\textquotesingle{}utente scelto tramite numero\+\_\+utente
+
+Finchè correct2 è diverso da 1, cicla.
+
+La funzione \hyperlink{controlli_8c_a233801499f59e57e8cecd5a290f05f3e}{Controllo\+Passaporto\+Temporaneo()}, restituisce 1 o 0. Se è 1 (significa che il passaporto è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del passaporto devono essere maiuscole Es. A\+A1234567
+
+Confronto il passaporto precedentemente immesso con il passaporto dell\textquotesingle{}utente pescato con la fseek(), sempre precedentemente.
+
+Esco dal ciclo principale.
+
+Resetto il vettore del passaporto temporaneo e riporto correct2 a 0, altrimenti non entrerà nella while del correct2.
+
+Scorro tutto il vettore delle prenotazioni e controllo se il codice volo per la prenotazione \mbox{[}i\mbox{]}, sia diverso dal carattere nullo. Nel caso in cui sia diverso dal carattere nullo (ovvero che il codice volo esiste), allora aumento il contatore delle prenotazioni.
+
+Confronto tra codice volo e carattere nullo
+
+Nella if ci entrerò solamente quando le prenotazioni sono uguali a 10. Se la if è verificata significa che l\textquotesingle{}utente ha tutte le prenotazioni già occupate, quindi esco con return 0.
+
+Leggo fino alla fine del file
+
+Quando read arriva a 0, significa che il file è finito.
+
+Stampo i voli solamente se il codice\+\_\+volo è diverso da 0 e il nome della compagnia non ha un nome pari a N\+U\+LL.
+
+Finchè correct4 è diverso da 1, ciclo.
+
+Trasformo in intero l\textquotesingle{}ID volo immesso precedentemente
+
+Tramite fseek(), mi posiziono al volo giusto.
+
+Controllo che la scelta dell\textquotesingle{}utente sia giusta Es. -\/ Ci sono 6 voli, l\textquotesingle{}utente sceglie il volo numero 7 In quel caso, stampo errore.
+
+Se l\textquotesingle{}utente sceglie un volo che non esiste oppure digita 0, stampa errore e ripeti il processo.
+
+Scorro il vettore delle prenotazioni dell\textquotesingle{}utente. Se trovo che il codice\+\_\+volo del volo scelto precedentemente, coincide con un codice volo presente nelle 15 prenotazioni dell\textquotesingle{}utente, allora stampo un messaggio di errore
+
+Aumento il contatore delle prenotazioni già effettuate.
+
+All\textquotesingle{}inizio wrong sarà uguale a 3.
+
+Quando wrong raggiungerà 0, allora mostrerò il menu.
+
+Stampo le rimanenti possibilità dell\textquotesingle{}utente
+
+Quando wrong raggiunge 0, rimando l\textquotesingle{}utente al menù.
+
+Se nel caso non c\textquotesingle{}è nessuna prenotazione già effettuata per un volo x, allora procedo nel trovare un indice di prenotazione (p.\mbox{[}num\mbox{]}) disponibile su cui scrivere la prenotazione stessa.
+
+Finchè correct3 è diverso da 1, cicla.
+
+Trasformo in interi l\textquotesingle{}orario di arrivo e l\textquotesingle{}orario di partenza della prenotazione\mbox{[}num\mbox{]} contenuta nella struct passeggero.
+
+Per verificare se un utente ha una prenotazione disponibile, controllo se l\textquotesingle{}orario di arrivo (Es. 18), precedentemente convertito in intero, è minore di M\+A\+X\+\_\+\+O\+R\+A\+\_\+\+V\+O\+LO (23). Verifico la stessa cosa per l\textquotesingle{}orario di partenza. Se le due condizioni combaciano, allora significa che nel vettore p\mbox{[}num\mbox{]}, esiste una prenotazione, quindi aumento la variabile \char`\"{}num\char`\"{} e ripeto il processo.
+
+Alla fine troverò un \char`\"{}num\char`\"{} disponibile, e uscirò dai 2 cicli,
+
+Mi sposto, tramite fseek(), all\textquotesingle{}utente giusto e tramite l\textquotesingle{}offset, anche al membro giusto (in questo caso \char`\"{}elenco\char`\"{}, poichè devo scrivere l\textquotesingle{}intero volo nel vettore di prenotazioni). Poi lo scrivo su file.
+
+Chiudo entrambi i file
+
+Mi sposto, tramite fseek(), all\textquotesingle{}utente giusto e tramite l\textquotesingle{}offset, anche al membro giusto (in questo caso \char`\"{}codice\+\_\+prenotazione\char`\"{}).
+
+Genero un codice prenotazione e lo copio nel membro codice\+\_\+prenotazione.
+
+Scrivo solamente il vettore delle prenotazioni, precisamente solo il membro \char`\"{}codice\+\_\+prenotazione\char`\"{}.
+
+Chiudo tutti i file aperti. \mbox{\Hypertarget{prenotazione_8c_a86dda93023d5f1b60ae34d6b92c5842b}\label{prenotazione_8c_a86dda93023d5f1b60ae34d6b92c5842b}} 
+\index{prenotazione.\+c@{prenotazione.\+c}!ricerca\+Prenotazione@{ricerca\+Prenotazione}}
+\index{ricerca\+Prenotazione@{ricerca\+Prenotazione}!prenotazione.\+c@{prenotazione.\+c}}
+\subsubsection{\texorpdfstring{ricerca\+Prenotazione()}{ricercaPrenotazione()}}
+{\footnotesize\ttfamily int ricerca\+Prenotazione (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{passeggeri }\end{DoxyParamCaption})}
+
+La funzione, la quale non ha bisogno di un login (dato che ricerca un codice prenotazione tra tutti quelli esistenti), chiede un codice prenotazione all\textquotesingle{}utente e verifica se quel codice prenotazione è inserito nel sistema o meno. Se esiste, procede con la stampa dell\textquotesingle{}utente per quella prenotazione altrimenti mostra all\textquotesingle{}utente un messaggio di errore. La funzione ha codice F12
+
+\begin{DoxyPrecond}{Precondizione}
+La funzione richiede che il file dei passeggeri, esista.
+\end{DoxyPrecond}
+\begin{DoxyPostcond}{Postcondizione}
+La funzione mostra l\textquotesingle{}utente per quella prenotazione o può mostrare un messaggio di errore se il file o la prenotazione non esiste. 
+\end{DoxyPostcond}
+Struct passeggero
+
+Variabile contatore che mi permetterà di uscire dai cicli se il dato richiesto è giusto.
+
+Variabile che mi permette la lettura del file. Quando read = 0, allora la lettura è finita.
+
+Variabile che servirà a dire se il codice di prenotazione esiste.
+
+Vettore su cui memorizzare il codice prenotazione immesso dall\textquotesingle{}utente al momento del login.
+
+La funzione \hyperlink{controlli_8c_ab235ffe5fb8886ae9e6f5d596a15a052}{Controllo\+Codice\+Prenotazione()}, restituisce 1 o 0. Se è 1 (significa che il codice è stato inserito correttamente) posso uscire dalla funzione, altrimenti farò ripetere il tutto.
+
+Le prime due lettere del codice prenotazione devono essere maiuscole. Es. A\+A123
+
+Ritorno 0 se il file non esiste.
+
+Leggi il file finchè read non arriva a 0.
+
+Quando read arriva a 0, significa che il file è finito.
+
+Scorro tutto il vettore delle prenotazioni per ogni utente presente nel sistema. Se il codice immesso dall\textquotesingle{}amministratore, coincide con uno presente nel vettore delle prenotazioni, allora stampo l\textquotesingle{}utente relativo a quella prenotazione.
+
+Aumento il contatore delle prenotazioni trovate
+
+Entro nella if solo se ha trovato almeno 1 prenotazione
+
+Entro nella if solo se non ha trovato nessuna prenotazione 
