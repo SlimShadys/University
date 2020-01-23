@@ -3,7 +3,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class Studente implements Comparable<Studente>{
+public class Studente {
 
 	private static int matricola;
 	private static String cognome;
@@ -80,12 +80,6 @@ public class Studente implements Comparable<Studente>{
 
 		t1.run(es);
 
-	}
-
-	@Override
-	public int compareTo(Studente o) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }
