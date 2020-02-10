@@ -19,5 +19,13 @@ public class Studente {
 		System.out.println("Matricola: " + matricola);
 		System.out.println("-----------------------");
 	}
+	
+	public void run() {
+
+	Studente o = new Studente(this.matricola,this.cognome,this.nome);
+
+	o.chiSono();
+
+	}
 
 }

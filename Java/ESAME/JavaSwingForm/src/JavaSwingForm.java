@@ -129,9 +129,10 @@ public class JavaSwingForm extends JFrame {
 			else {
 				Iterator<Studente> i1 = studenti.iterator();
 
-				while(i1.hasNext())
-				{
-					((Studente)i1.next()).chiSono();
+				while(i1.hasNext()) {
+					System.out.println("Creo thread " +i);
+					i1.next().start();
+					i++;
 				}
 			}
 		}
