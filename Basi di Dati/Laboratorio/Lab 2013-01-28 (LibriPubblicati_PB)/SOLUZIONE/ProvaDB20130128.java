@@ -13,6 +13,8 @@ Matricola	:
 
  */
 
+package application;
+
 import java.sql.*;
 
 public class ProvaDB20130128 {
@@ -22,9 +24,10 @@ public class ProvaDB20130128 {
 
 		int ok, num;
 
-		int codice;
+		String codice;
 		int numero;
-		
+		float prezzo;
+
 		String nome;
 		String cognome;
 		String titolo;
@@ -47,8 +50,8 @@ public class ProvaDB20130128 {
 		String stringa4 = "SELECT * FROM LibriPubblicati_PB";
 
 		// es. 5: creazione stringa contenente comando SQL
-		String stringa5 = "SELECT Nro_autore, Cognome_autore, Nome_autore FROM Autori NATURAL JOIN LibriAutori "
-				+ "WHERE Codice_libro NOT IN (SELECT Codice_libro FROM LibriPubblicati_PB) "
+		String stringa5 = "SELECT * FROM Autori WHERE (Nro_autore, Cognome_autore, Nome_autore) NOT IN "
+				+ "(SELECT Nro_autore, Cognome_autore, Nome_autore FROM Autori NATURAL JOIN LibriAutori NATURAL JOIN LibriPubblicati_PB) "
 				+ "ORDER BY Cognome_autore, Nome_autore";
 
 		// es. 6: creazione stringa contenente comando SQL
@@ -57,9 +60,10 @@ public class ProvaDB20130128 {
 				+ "WHERE Prezzo_libro = (SELECT MAX(Prezzo_libro) FROM LibriPubblicati_PB NATURAL JOIN Libri)";
 
 		// es. 7: creazione stringa contenente comando SQL
-		String stringa7 = "SELECT Cognome_autore, Nome_autore, Nro_copie_disponibili "
-				+ "FROM LibriPubblicati_PB NATURAL JOIN LibriAutori NATURAL JOIN Autori NATURAL JOIN Scorte NATURAL JOIN Filiali "
-				+ "WHERE Nro_Seq = 1 AND Nome_Filiale = 'Henrys Books'";
+		String stringa7 = "SELECT DISTINCT Titolo_libro,Nome_autore, Cognome_autore, sum(Nro_copie_disponibili) AS Copie_disponibili "
+				+ "FROM Autori NATURAL JOIN LibriAutori NATURAL JOIN LibriPubblicati_PB NATURAL JOIN Scorte NATURAL JOIN Filiali "
+				+ "WHERE Nro_seq = 1 AND Nome_filiale = 'Henrys Books' "
+				+ "GROUP BY (Codice_libro)";
 
 		try {
 			// caricamento del driver
@@ -86,7 +90,7 @@ public class ProvaDB20130128 {
 			Statement istruzione3 = connessione.createStatement();
 			istruzione3.execute(stringa3);
 
-			System.out.println("\nEs3: Creata vista LibriPubblicati_PB.");
+			System.out.println("\n3) Creata vista LibriPubblicati_PB.");
 
 			// es. 4: esecuzione comando SQL
 			Statement istruzione4 = connessione.createStatement();
@@ -95,7 +99,7 @@ public class ProvaDB20130128 {
 			System.out.println("\n4) Il contenuto della vista LibriPubblicati_PB è:");
 			while (risultato4.next()) {
 
-				codice = risultato4.getInt("Codice_libro");
+				codice = risultato4.getString("Codice_libro");
 				titolo = risultato4.getString("Titolo_libro");
 				tipo = risultato4.getString("Tipo_libro");
 
@@ -109,7 +113,7 @@ public class ProvaDB20130128 {
 			// es. 5: esecuzione comando SQL
 			Statement istruzione5 = connessione.createStatement();
 			ResultSet risultato5 = istruzione5.executeQuery(stringa5);
-			
+
 			System.out.println("\n\\-----------------------------//");
 
 			System.out.println("\n5) Gli autori che non pubblicano libri con l’editore di nome 'Pocket Books' sono:");
@@ -129,7 +133,7 @@ public class ProvaDB20130128 {
 			// es. 6: esecuzione comando SQL
 			Statement istruzione6 = connessione.createStatement();
 			ResultSet risultato6 = istruzione6.executeQuery(stringa6);
-			
+
 			System.out.println("\n\\-----------------------------//");
 
 			System.out.println("\n6) Il titolo e tipo del libro più costoso fra quelli pubblicati dall’editore di nome 'Pocket Books' è:");
@@ -138,16 +142,18 @@ public class ProvaDB20130128 {
 
 				titolo = risultato6.getString("Titolo_libro");
 				tipo = risultato6.getString("Tipo_libro");
+				prezzo = risultato6.getFloat("Prezzo_libro");
 
 				System.out.println("Titolo libro: " + titolo);
-				System.out.println("Tipo libro  : " + tipo);	
+				System.out.println("Tipo libro  : " + tipo);
+				System.out.println("Prezzo libro  : " + prezzo);
 
 			}
 
 			// es. 7: esecuzione comando SQL
 			Statement istruzione7 = connessione.createStatement();
 			ResultSet risultato7 = istruzione7.executeQuery(stringa7);
-			
+
 			System.out.println("\n\\-----------------------------//");
 
 			System.out.println("\n7) Per ciascun libro pubblicato dall’editore di nome 'Pocket Books', il cognome e nome del primo autore ed il numero totale di copie disponibili presso le filiali Henrys Books è:");
@@ -155,7 +161,7 @@ public class ProvaDB20130128 {
 
 				cognome = risultato7.getString("Cognome_autore");
 				nome = risultato7.getString("Nome_autore");
-				numero = risultato7.getInt("Nro_copie_disponibili");
+				numero = risultato7.getInt("Copie_disponibili");
 
 				System.out.println("Cognome autore  : " + cognome);
 				System.out.println("Nome autore     : " + nome);
